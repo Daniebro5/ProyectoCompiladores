@@ -1,63 +1,63 @@
-Identificador CaracterEspecial Identificador ErrorIdentificador CaracterEspecial 
+Identificador Libreria 
 
-ErrorIdentificador CaracterEspecial Identificador ErrorIdentificador CaracterEspecial 
-
-
-
-Identificador Identificador CaracterEspecial Palabrareservada Identificador CaracterEspecial Palabrareservada Identificador CaracterEspecial Palabrareservada Identificador CaracterEspecial Palabrareservada Identificador CaracterEspecial CaracterEspecial 
+ExpresionReservada Libreria 
 
 
 
-Identificador Identificador CaracterEspecial Identificador CaracterEspecial CaracterEspecial 
+Palabrareservada Identificador Agrupador Palabrareservada Identificador CaracterEspecial Palabrareservada Identificador CaracterEspecial Palabrareservada Identificador CaracterEspecial Palabrareservada Identificador Agrupador CaracterEspecial 
 
 
 
-Identificador CaracterEspecial CaracterEspecial CaracterEspecial 
+Palabrareservada Identificador Agrupador Palabrareservada Agrupador Agrupador 
 
-Palabrareservada Identificador CaracterEspecial char CaracterEspecial 
 
-Palabrareservada Identificador CaracterEspecial char CaracterEspecial 
 
-Palabrareservada Identificador CaracterEspecial char CaracterEspecial 
+Identificador Agrupador Agrupador CaracterEspecial 
+
+Palabrareservada Identificador Operador Caracter CaracterEspecial 
+
+Palabrareservada Identificador Operador Caracter CaracterEspecial 
+
+Palabrareservada Identificador Operador Caracter CaracterEspecial 
 
 Palabrareservada Identificador CaracterEspecial 
 
 
 
-Identificador CaracterEspecial string CaracterEspecial CaracterEspecial 
+Identificador Agrupador Cadena Agrupador CaracterEspecial 
 
-Identificador CaracterEspecial string CaracterEspecial CaracterEspecial Identificador CaracterEspecial CaracterEspecial 
+Identificador Agrupador Cadena CaracterEspecial CaracterEspecial Identificador Agrupador CaracterEspecial 
 
-Identificador CaracterEspecial Identificador CaracterEspecial CaracterEspecial 
-
-
-
-Identificador CaracterEspecial string CaracterEspecial CaracterEspecial 
-
-Identificador CaracterEspecial Identificador CaracterEspecial Identificador CaracterEspecial Identificador CaracterEspecial Identificador CaracterEspecial CaracterEspecial 
-
-CaracterEspecial 
+Identificador Agrupador Identificador Agrupador CaracterEspecial 
 
 
 
-Identificador Identificador CaracterEspecial Palabrareservada Identificador CaracterEspecial Palabrareservada Identificador CaracterEspecial Palabrareservada Identificador CaracterEspecial Palabrareservada Identificador CaracterEspecial CaracterEspecial 
+Identificador Agrupador Cadena Agrupador CaracterEspecial 
+
+Identificador Agrupador Identificador CaracterEspecial Identificador CaracterEspecial Identificador CaracterEspecial Identificador Agrupador CaracterEspecial 
+
+Agrupador 
 
 
 
-Palabrareservada CaracterEspecial Identificador OperandoCompuesto Integer CaracterEspecial CaracterEspecial 
+Palabrareservada Identificador Agrupador Palabrareservada Identificador CaracterEspecial Palabrareservada Identificador CaracterEspecial Palabrareservada Identificador CaracterEspecial Palabrareservada Identificador Agrupador Agrupador 
 
-Identificador CaracterEspecial string CaracterEspecial Identificador CaracterEspecial Identificador CaracterEspecial CaracterEspecial 
 
-CaracterEspecial 
 
-Palabrareservada CaracterEspecial 
+Palabrareservada Agrupador Identificador Comparador Entero Agrupador Agrupador 
 
-Identificador CaracterEspecial Identificador Integer CaracterEspecial Identificador CaracterEspecial Identificador CaracterEspecial Identificador CaracterEspecial CaracterEspecial 
+Identificador Agrupador Cadena CaracterEspecial Identificador CaracterEspecial Identificador Agrupador CaracterEspecial 
 
-Identificador CaracterEspecial string CaracterEspecial Identificador CaracterEspecial Identificador CaracterEspecial CaracterEspecial 
+Agrupador 
 
-Identificador CaracterEspecial Identificador Integer CaracterEspecial Identificador CaracterEspecial Identificador CaracterEspecial Identificador CaracterEspecial CaracterEspecial 
+Palabrareservada Agrupador 
 
-CaracterEspecial 
+Identificador Agrupador Identificador Entero CaracterEspecial Identificador CaracterEspecial Identificador CaracterEspecial Identificador Agrupador CaracterEspecial 
 
-CaracterEspecial 
+Identificador Agrupador Cadena CaracterEspecial Identificador CaracterEspecial Identificador Agrupador CaracterEspecial 
+
+Identificador Agrupador Identificador Entero CaracterEspecial Identificador CaracterEspecial Identificador CaracterEspecial Identificador Agrupador CaracterEspecial 
+
+Agrupador 
+
+Agrupador 
