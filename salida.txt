@@ -1,4 +1,63 @@
-Identificador 
-if 
-else 
+Identificador CaracterEspecial Identificador ErrorIdentificador CaracterEspecial 
 
+ErrorIdentificador CaracterEspecial Identificador ErrorIdentificador CaracterEspecial 
+
+
+
+Identificador Identificador CaracterEspecial Palabrareservada Identificador CaracterEspecial Palabrareservada Identificador CaracterEspecial Palabrareservada Identificador CaracterEspecial Palabrareservada Identificador CaracterEspecial CaracterEspecial 
+
+
+
+Identificador Identificador CaracterEspecial Identificador CaracterEspecial CaracterEspecial 
+
+
+
+Identificador CaracterEspecial CaracterEspecial CaracterEspecial 
+
+Palabrareservada Identificador CaracterEspecial char CaracterEspecial 
+
+Palabrareservada Identificador CaracterEspecial char CaracterEspecial 
+
+Palabrareservada Identificador CaracterEspecial char CaracterEspecial 
+
+Palabrareservada Identificador CaracterEspecial 
+
+
+
+Identificador CaracterEspecial string CaracterEspecial CaracterEspecial 
+
+Identificador CaracterEspecial string CaracterEspecial CaracterEspecial Identificador CaracterEspecial CaracterEspecial 
+
+Identificador CaracterEspecial Identificador CaracterEspecial CaracterEspecial 
+
+
+
+Identificador CaracterEspecial string CaracterEspecial CaracterEspecial 
+
+Identificador CaracterEspecial Identificador CaracterEspecial Identificador CaracterEspecial Identificador CaracterEspecial Identificador CaracterEspecial CaracterEspecial 
+
+CaracterEspecial 
+
+
+
+Identificador Identificador CaracterEspecial Palabrareservada Identificador CaracterEspecial Palabrareservada Identificador CaracterEspecial Palabrareservada Identificador CaracterEspecial Palabrareservada Identificador CaracterEspecial CaracterEspecial 
+
+
+
+Palabrareservada CaracterEspecial Identificador OperandoCompuesto Integer CaracterEspecial CaracterEspecial 
+
+Identificador CaracterEspecial string CaracterEspecial Identificador CaracterEspecial Identificador CaracterEspecial CaracterEspecial 
+
+CaracterEspecial 
+
+Palabrareservada CaracterEspecial 
+
+Identificador CaracterEspecial Identificador Integer CaracterEspecial Identificador CaracterEspecial Identificador CaracterEspecial Identificador CaracterEspecial CaracterEspecial 
+
+Identificador CaracterEspecial string CaracterEspecial Identificador CaracterEspecial Identificador CaracterEspecial CaracterEspecial 
+
+Identificador CaracterEspecial Identificador Integer CaracterEspecial Identificador CaracterEspecial Identificador CaracterEspecial Identificador CaracterEspecial CaracterEspecial 
+
+CaracterEspecial 
+
+CaracterEspecial 

@@ -1,35 +1,51 @@
 %{
+#include <stdio.h>
 FILE *archSal;
-int num_linea =0;
-bool bandera = true;
+
+
 %}
+%option noyywrap
+%option yylineno 
 
-car ","|";"|":"|"("|")"|"["|"]"|"{"|"}"|"+"|"-"|"<"|">"|"="|"!"|"&"|"$" 
 
+omitir " "|\t
+entero [0-9]|"-"[0-9]|"+"[0-9]   
+car ","|";"|":"|"("|")"|"["|"]"|"{"|"}"|"+"|"-"|"<"|">"|"="|"!"|"&"|"$"  
+float [0-9]*"."[0-9]+ 
+booleano "True"|"False"|"true"|"false"
+reserv "if"|"else"|"return"|"bool"|"string"|"int"|"float"|"char"|"then"|"while"|"void"|"do"|"input"|"output"
+iden [a-z]([a-z]|[0-9])*   
+oper "<="|">="|"=="|"!="|"&&"|"||"
+char "'".{1}"'"
+cadena \"[^\n"]+\"
+coms "//".*?    
+comc "/*"[^"*/"]* 
 %%
 
-[0-9]|"-"[0-9]|"+"[0-9]		fprintf(archSal,"Integer ",yytext);
-[0-9]*"."[0-9]+			fprintf(archSal,"Float ",yytext);
-"True"|"False"|"true"|"false"			fprintf(archSal,"bool ",yytext);
-"if"|"else"|"return"|"bool"|"string"|"int"|"float"|"char"|"then"|"while"|"do"|"input"|"output"	fprintf(archSal,"Palabra reservada ",yytext);
+{omitir}*       ;
+{entero}		fprintf(archSal,"Integer ");
+{float}			fprintf(archSal,"Float ");
+{booleano}		fprintf(archSal,"bool ");
+{reserv} fprintf(archSal,"Palabrareservada ");
 
-car		{fprintf(archSal,"Caracter Especial ",yytext);}
+{car}  		{fprintf(archSal,"CaracterEspecial ");}
  		
-"<="|">="|"=="|"!="|"&&"|"||"			fprintf(archSal,"Operando Compuesto ",yytext);
+{oper}			fprintf(archSal,"OperandoCompuesto ");
 
-[a-z]([a-z]|[0-9])* 		fprintf(archSal,"Identificador ",yytext);
-"'".{1}"'"			fprintf(archSal,"char ",yytext);
-\"[^\n"]+\"			fprintf(archSal,"string ",yytext);
-\n				fprintf(archSal,"\n",yytext); ++num_linea;
+{iden} 		fprintf(archSal,"Identificador ");
+{char}			fprintf(archSal,"char ");
+{cadena}			fprintf(archSal,"string ");
+\n				fprintf(archSal,"\n"); 
 
-"//".*?				fprintf(archSal,"Comentario linea ",yytext);
+{coms}			fprintf(archSal,"Comentariolinea ");
 
-"/*"[^"*/"]*	 fprintf(archSal,"Comentario dos o mas lineas",yytext);
-.		fprintf(archSal,"Error",yytext); bandera = false;
+{comc}	 fprintf(archSal,"Comentariovariaslineas");
+.		fprintf(archSal,"Error");
 
 %%
 
-main(int argc,char *argv[]){
+
+void main(int argc,char *argv[]){
     yyin=fopen(argv[1],"r");
     archSal=fopen("salida.txt","w");
     yylex();
