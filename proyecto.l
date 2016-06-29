@@ -57,7 +57,8 @@ comc "/*"[^"*/"]*
 {entero} {fprintf(archSal,"Entero "); return ENTERO;}
 {float} {fprintf(archSal,"NumeroDecimal "); return FLOTANTE;}
 {bool} {fprintf(archSal,"Booleano "); return BOOLEANO;}
-{caresp} {fprintf(archSal,"CE ");}
+{caresp} {fprintf(archSal,"CE ");return CARRESP;}
+{compar} {fprintf(archSal,"COMPAR ");return COMPAR;			}
 {iden} {fprintf(archSal,"Identificador "); return IDENTIFICADOR;}
 {char} {fprintf(archSal,"Caracter ");}
 {string} {fprintf(archSal,"Cadena "); return CADENA;}

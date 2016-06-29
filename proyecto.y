@@ -12,6 +12,29 @@
 %token INCLUDE
 %token LIBRERIA
 %token CADENA
+%token IF 
+%token FOR 
+%token ELSE 
+%token return 
+%token TIPODEDATOBOOL 
+%token TIPODEDATOSTRING 
+%token VOID
+%token TIPODEDATOENTERO
+%token TIPODEDATOFLOTANTE
+%token TIPODEDATOCHAR
+%token THEN 
+%token WHILE
+%token VOID 
+%token DO
+%token INPUT
+%token OUTPUT
+%token CARRESP
+%token COMPAR
+%token CHAR
+%token COMS
+%token COMC
+
+
 
 %%
 EXP:
