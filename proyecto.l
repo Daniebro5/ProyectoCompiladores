@@ -1,9 +1,10 @@
 %{
 #include <stdlib.h> 
-void yyerror(char *); 
+void yyerror(char *);
+int funcion();
 #include "proyecto.tab.h"
 %}
-caresp 		","|";"|":"|"!"|"&"|"$"|"("|")"|"["|"]"|"{"|"}"|"+"|"-"|"<"|">"|"="
+caresp 		","|";"|":"|"!"|"&"|"$"|"("|")"|"["|"]"|"{"|"}"|"+"|"-"|"<"|">"
 compar 		"<="|">="|"=="|"!="|"&&"|"||"
 iden 		[a-z]([a-zA-Z]|[0-9])*
 entero 		[0-9]|"-"[0-9]|"+"[0-9]
@@ -34,6 +35,7 @@ comc 		"/*"[^"*/"]*
 "do"      			return DO;
 "input"   			return INPUT;
 "output"  			return OUTPUT;
+"="				return IGUAL;
 [0-9]|"-"[0-9]|"+"[0-9] 	return ENTERO;
 {float} 			return FLOTANTE;
 {bool} 				return BOOLEANO;

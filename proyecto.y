@@ -8,6 +8,7 @@ extern FILE *yyin;
 %}
 
 %token INCLUDE
+%token IGUAL
 %token LIBRERIA
 %token IF
 %token FOR
@@ -28,28 +29,65 @@ extern FILE *yyin;
 %token FLOTANTE
 %token BOOLEANO
 %token CARRESP
-%token COMPAR		
+%token COMPAR
 %token IDENTIFICADOR
 %token CARACTER 
 %token CADENA
 
 
-
+%start programa
 %%
-EXP:
-	INCLUDE LIBRERIA	{fprintf(archSal,"Llamada a libreria ");}
-	;
-/*op:     '+'|'-'|'*'|'/';
 
-oper:	IDENTIFICADOR op oper    
-	|IDENTIFICADOR
-	|ENTERO op
-	|ENTERO
-	|FLOTANTE op
-	|FLOTANTE;
-	
-EXP1:   IDENTIFICADOR '=' oper  {fprintf(archSal,"Operacion ");}
-;*/
+
+funcion:
+		IDENTIFICADOR "(" declaracionParametro ")" ";"
+		|tipoDeDato IDENTIFICADOR "(" declaracionParametro ")" "{" sentencia "}"
+		|""
+		;
+declaracionG:
+		declaracionLibreria
+		|declaracionFuncion
+		|declaracionVariable
+		;
+declaracionLibreria:
+		INCLUDE LIBRERIA					{fprintf(archSal,"libreria la concha de tu hermana");}
+		;
+declaracionVariable:
+		TIPODEDATOBOOL IDENTIFICADOR IGUAL BOOLEANO ";" 	{fprintf(archSal,"declaracionbooleano");}
+		|TIPODEDATOSTRING IDENTIFICADOR IGUAL CADENA ";"	{fprintf(archSal,"declaracioncadena");}
+		|TIPODEDATOENTERO IDENTIFICADOR IGUAL ENTERO ";"	{fprintf(archSal,"declaracionentero");}
+		|TIPODEDATOFLOTANTE IDENTIFICADOR IGUAL FLOTANTE ";"	{fprintf(archSal,"declaracionflotante");}
+		|TIPODEDATOCHAR IDENTIFICADOR IGUAL CARACTER ";"	{fprintf(archSal,"declaracioncaracter");}
+		|tipoDeDato IDENTIFICADOR IGUAL IDENTIFICADOR ";"	{fprintf(archSal,"declaracionigualacion");}
+		;
+declaracionFuncion:
+		TIPODEDATOBOOL IDENTIFICADOR "(" declaracionParametro ")" ";" 	{fprintf(archSal,"declaracionbooleano");}
+		|TIPODEDATOSTRING IDENTIFICADOR IGUAL CADENA "(" declaracionParametro ")" ";"	{fprintf(archSal,"declaracioncadena");}
+		|TIPODEDATOENTERO IDENTIFICADOR IGUAL ENTERO "(" declaracionParametro ")" ";"	{fprintf(archSal,"declaracionentero");}
+		|TIPODEDATOFLOTANTE IDENTIFICADOR IGUAL FLOTANTE "(" declaracionParametro ")" ";"	{fprintf(archSal,"declaracionflotante");}
+		|TIPODEDATOCHAR IDENTIFICADOR IGUAL CARACTER "(" declaracionParametro ")" ";"	{fprintf(archSal,"declaracioncaracter");}
+		|tipoDeDato IDENTIFICADOR IGUAL IDENTIFICADOR "(" declaracionParametro ")" ";"	{fprintf(archSal,"declaracionigualacion");}
+		;
+declaracionParametro:
+		tipoDeDato IDENTIFICADOR
+		;
+tipoDeDato:
+		TIPODEDATOBOOL
+		|TIPODEDATOSTRING
+		|TIPODEDATOENTERO
+		|TIPODEDATOFLOTANTE
+		|TIPODEDATOCHAR
+		;
+sentencia:
+		declaracionVariable
+		|funcion
+		;
+main:
+		tipoDeDato "main" "(" declaracionParametro ")" "{" sentencia "}"{fprintf(archSal,"main damier");}
+		;
+programa:
+		declaracionG main funcion		{fprintf(archSal,"funciona :)");}
+		;
 
 %%
 void yyerror(char *s) { 
@@ -58,6 +96,9 @@ void yyerror(char *s) {
 void main(void) { 
 	yyin=fopen("entrada.txt","r");
 	archSal=fopen("salidaSintactica.txt","w");
-    yyparse();  
-fclose(archSal);
+    	yyparse();  
+	fclose(archSal);
 } 
+
+
+
