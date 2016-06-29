@@ -16,7 +16,7 @@ comc 		"/*"[^"*/"]*
 
 %%
 
-
+" "|\t|\n			;
 "#include" 			return INCLUDE;
 "<"[a-z]+".h>" 			return LIBRERIA;
 "if"      			return IF;

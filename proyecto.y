@@ -1,7 +1,10 @@
 %{
-	 #include <stdio.h> 
+	 #include <stdio.h>
+	#include <stdlib.h> 
     int yylex(void); 
     void yyerror(char *);
+extern FILE *yyin;
+ FILE *archSal;
 %}
 
 %token INCLUDE
@@ -34,7 +37,7 @@
 
 %%
 EXP:
-	INCLUDE LIBRERIA	{printf("Llamada a libreria ");}
+	INCLUDE LIBRERIA	{fprintf(archSal,"Llamada a libreria ");}
 	;
 /*op:     '+'|'-'|'*'|'/';
 
@@ -52,7 +55,9 @@ EXP1:   IDENTIFICADOR '=' oper  {fprintf(archSal,"Operacion ");}
 void yyerror(char *s) { 
     fprintf(stderr, "%s\n", s); 
 } 
-int main(void) { 
-    yyparse(); 
-    return 0; 
+void main(void) { 
+	yyin=fopen("entrada.txt","r");
+	archSal=fopen("salidaSintactica.txt","w");
+    yyparse();  
+fclose(archSal);
 } 

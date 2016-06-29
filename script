@@ -1,4 +1,4 @@
 #/bin/bash
-bison -d proyecto.y
 flex proyecto.l
+bison -d proyecto.y
 gcc -o proyecto lex.yy.c proyecto.tab.c
