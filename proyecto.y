@@ -1,45 +1,42 @@
 %{
-	#include <stdio.h>
-	int yylex(void);
-	void yyerror(char *);
-	FILE *archSal;
+	 #include <stdio.h> 
+    int yylex(void); 
+    void yyerror(char *);
 %}
 
-%token ENTERO
-%token IDENTIFICADOR
-%token FLOTANTE
-%token BOOLEANO
 %token INCLUDE
 %token LIBRERIA
-%token CADENA
-%token IF 
-%token FOR 
-%token ELSE 
-%token return 
-%token TIPODEDATOBOOL 
-%token TIPODEDATOSTRING 
-%token VOID
+%token IF
+%token FOR
+%token ELSE
+%token RETURN
+%token TIPODEDATOBOOL
+%token TIPODEDATOSTRING
 %token TIPODEDATOENTERO
+%token TIPODEDATOVOID
 %token TIPODEDATOFLOTANTE
 %token TIPODEDATOCHAR
-%token THEN 
+%token THEN
 %token WHILE
 %token DO
 %token INPUT
 %token OUTPUT
+%token ENTERO
+%token FLOTANTE
+%token BOOLEANO
 %token CARRESP
-%token COMPAR
-%token CHAR
-%token COMS
-%token COMC
+%token COMPAR		
+%token IDENTIFICADOR
+%token CARACTER 
+%token CADENA
 
 
 
 %%
 EXP:
-	INCLUDE LIBRERIA	{fprintf(archSal,"Llamada a libreria ");}
+	INCLUDE LIBRERIA	{printf("Llamada a libreria ");}
 	;
-op:     '+'|'-'|'*'|'/';
+/*op:     '+'|'-'|'*'|'/';
 
 oper:	IDENTIFICADOR op oper    
 	|IDENTIFICADOR
@@ -49,15 +46,13 @@ oper:	IDENTIFICADOR op oper
 	|FLOTANTE;
 	
 EXP1:   IDENTIFICADOR '=' oper  {fprintf(archSal,"Operacion ");}
+;*/
 
 %%
-
 void yyerror(char *s) { 
-    fprintf(archSal,stderr, "%s\n", s); 
+    fprintf(stderr, "%s\n", s); 
 } 
 int main(void) { 
-	archSal=fopen("salidaSintactica.txt","w");
-	yyparse();
-	fclose(archSal);
-	return 0; 
-}
+    yyparse(); 
+    return 0; 
+} 
