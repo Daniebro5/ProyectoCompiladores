@@ -40,6 +40,21 @@
 EXP:
 	INCLUDE LIBRERIA	{fprintf(archSal,"Llamada a libreria ");}
 	;
+op:     '+'|'-'|'*'|'/';
+
+oper:	IDENTIFICADOR op oper    
+	|IDENTIFICADOR
+	|ENTERO op
+	|ENTERO
+	|FLOTANTE op
+	|FLOTANTE;
+	
+EXP1:   IDENTIFICADOR '=' oper  {fprintf(archSal,"Operacion ");}
+
+
+
+
+
 
 %%
 
