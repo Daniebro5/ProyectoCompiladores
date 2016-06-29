@@ -1,75 +1,92 @@
+%option yylineno
+
 %{
 #include <stdio.h>
 #include <stdlib.h>
-FILE *archSal;
 void yyerror(char *);
 #include "proyecto.tab.h"
+static void comment(void);
+static int check_type(void);¿
+void count();
+void _remove();
+
+extern int yyparse();
+int yylineno;
+
+FILE *beamerFile;
+FILE *yyin;
+void yyerror(const char *s);
+void beamerParseFile();
+void parseFile();
+void parse(FILE *filename,int type);
+void createBeamerFile();
 %}
-%option noyywrap
-%option yylineno
-if "if"
-for "for"
-else "else"
-return "return"
-bool "bool"
-string "string"
-int "int"
-void "void"
-float "float"
-char "char"
-then "then"
-while "while"
-void "void"
-do "do"
-input "input"
-output "output"
-caresp ","|";"|":"|"!"|"&"|"$"|"("|")"|"["|"]"|"{"|"}"|"+"|"-"|"<"|">"|"="
-compar "<="|">="|"=="|"!="|"&&"|"||"
-iden [a-z]([a-zA-Z]|[0-9])*
-entero [0-9]|"-"[0-9]|"+"[0-9]
-float [0-9]*"."[0-9]+
-bool "True"|"False"|"true"|"false"
-char "'"[a-zA-Z]{1}"'"
-string \"[^\n"]+\"
-omitir " "|\t
-coms "//".*?
-comc "/*"[^"*/"]*
+
+caresp 		","|";"|":"|"!"|"&"|"$"|"("|")"|"["|"]"|"{"|"}"|"+"|"-"|"<"|">"|"="
+compar 		"<="|">="|"=="|"!="|"&&"|"||"
+iden 		[a-z]([a-zA-Z]|[0-9])*
+entero 		[0-9]|"-"[0-9]|"+"[0-9]
+float 		[0-9]*"."[0-9]+
+bool 		"True"|"False"|"true"|"false"
+char 		"'"[a-zA-Z]{1}"'"
+string 		\"[^\n"]+\"
+coms 		"//".*?
+comc 		"/*"[^"*/"]*
 %%
-"#include" {fprintf(archSal,"ExpresionReservada "); return INCLUDE;}
-"<"[a-z]+".h>" {fprintf(archSal,"Libreria "); return LIBRERIA;}
-{omitir}* {;}
-{if}      {fprint(archSal,"if"); return IF;}}
-{for}      {fprint(archSal,"for"); return FOR;}
-{else}      {fprint(archSal,"if"); return ELSE;}
-{return}      {fprint(archSal,"if"); return RETURN;}
-{bool}      {fprint(archSal,"bool"); return TIPODEDATOBOOL;}
-{string}      {fprint(archSal,"string"); return TIPODEDATOSTRING;}
-{int}      {fprint(archSal,"int"); return TIPODEDATOENTERO;}
-{void}      {fprint(archSal,"void"); return TIPODEDATOVOID;}
-{float}      {fprint(archSal,"float"); return TIPODEDATOFLOTANTE;}
-{char}      {fprint(archSal,"char"); return TIPODEDATOCHAR;}
-{then}      {fprint(archSal,"then"); return THEN;}
-{while}      {fprint(archSal,"while"); return WHILE;}
-{void}      {fprint(archSal,"void"); return VOID;}
-{do}      {fprint(archSal,"do"); return DO;}
-{input}      {fprint(archSal,"input"); return INPUT;}
-{output}      {fprint(archSal,"output"); return OUTPUT;}
-{entero} {fprintf(archSal,"Entero "); return ENTERO;}
-{float} {fprintf(archSal,"NumeroDecimal "); return FLOTANTE;}
-{bool} {fprintf(archSal,"Booleano "); return BOOLEANO;}
-{caresp} {fprintf(archSal,"CE ");return CARRESP;}
-{compar} {fprintf(archSal,"COMPAR ");return COMPAR;			}
-{iden} {fprintf(archSal,"Identificador "); return IDENTIFICADOR;}
-{char} {fprintf(archSal,"Caracter ");}
-{string} {fprintf(archSal,"Cadena "); return CADENA;}
-\n {fprintf(archSal,"\n");}
-{coms} {fprintf(archSal,"Comentariolinea ");}
-{comc} {fprintf(archSal,"Comentariovariaslineas");}
-. {fprintf(archSal,"Error en la linea: %d",yylineno);}
+"#include" 		return INCLUDE;
+"<"[a-z]+".h>" 		return LIBRERIA;
+[ \t\v\n\f]		;
+"if"      		return IF;
+"for"      		return FOR;
+"else"     		return ELSE;
+"return"  		return RETURN;
+"bool"  		return TIPODEDATOBOOL;
+"string"  		return TIPODEDATOSTRING;
+"int"     		return TIPODEDATOENTERO;
+"void"    		return TIPODEDATOVOID;
+"float"   		return TIPODEDATOFLOTANTE;
+"char"    		return TIPODEDATOCHAR;
+"then"    		return THEN;
+"while"   		return WHILE;
+"void"   		return VOID;
+"do"      		return DO;
+"input"   		return INPUT;
+"output"  		return OUTPUT;
+{entero} 		return ENTERO;
+{float} 		return FLOTANTE;
+{bool} 			return BOOLEANO;
+{caresp}		return CARRESP;
+{compar} 		return COMPAR;			}
+{iden} 			return IDENTIFICADOR;
+{char}			return CARACTER 
+{string} 		return CADENA;
+\n			;
+{coms} 			;
+{comc} 			;
+.			yyerror("invalid character");
 %%
-void main(int argc,char *argv[]){
-yyin=fopen(argv[1],"r");
-archSal=fopen("salidaLexica.txt","w");
-yylex();
-fclose(archSal);
+
+void yyerror(const char *s){
+	int column=0;
+	fflush(stdout);
+	printf("\n%*s\n%*s in line: %d\n", column, "^", column, s, yylineno);
+}
+
+void beamerParseFile(FILE *filename){
+		yyin = filename;
+		yyparse();
+}
+
+void parseFile(FILE *filename){
+		yyin = filename;
+		yyparse();
+
+
+}
+
+void parse(FILE *filename,int type) {
+
+	
+    parseFile(filename);
+  
 }

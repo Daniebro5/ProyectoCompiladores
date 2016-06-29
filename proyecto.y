@@ -24,7 +24,6 @@
 %token TIPODEDATOCHAR
 %token THEN 
 %token WHILE
-%token VOID 
 %token DO
 %token INPUT
 %token OUTPUT
@@ -50,11 +49,6 @@ oper:	IDENTIFICADOR op oper
 	|FLOTANTE;
 	
 EXP1:   IDENTIFICADOR '=' oper  {fprintf(archSal,"Operacion ");}
-
-
-
-
-
 
 %%
 
