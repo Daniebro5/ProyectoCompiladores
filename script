@@ -1,0 +1,4 @@
+#/bin/bash
+bison -d proyecto.y
+flex proyecto.l
+gcc -o proyecto lex.yy.c proyecto.tab.c
