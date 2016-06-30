@@ -1,4 +1,4 @@
 #/bin/bash
-flex proyecto.l
-bison -d proyecto.y
-gcc -o proyecto lex.yy.c proyecto.tab.c
+bison -d sintactico.y
+flex sintactico.l
+gcc -o sintactico lex.yy.c sintactico.tab.c

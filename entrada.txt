@@ -1,8 +1,1 @@
-#include <hsjhd.h>
-int main(int x){
-float y = 2;
-}
-
-int funcion(int u){
-int d = 0;
-}
+hola(int a);
