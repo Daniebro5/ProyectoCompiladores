@@ -71,13 +71,16 @@ extern int yydebug;
     IDENTIFICADOR = 281,
     CARACTER = 282,
     CADENA = 283,
-    KEYOP = 284,
-    KEYCL = 285,
-    ParetOP = 286,
-    ParetCL = 287,
-    BracketOP = 288,
-    BracketCL = 289,
-    FinCommand = 290
+    MASMENOS = 284,
+    DIMULTI = 285,
+    COMA = 286,
+    KEYOP = 287,
+    KEYCL = 288,
+    ParetOP = 289,
+    ParetCL = 290,
+    BracketOP = 291,
+    BracketCL = 292,
+    FinCommand = 293
   };
 #endif
 

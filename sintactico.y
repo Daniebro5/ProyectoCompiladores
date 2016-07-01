@@ -33,7 +33,9 @@ extern FILE *yyin;
 %token IDENTIFICADOR
 %token CARACTER 
 %token CADENA
-
+%token MASMENOS
+%token DIMULTI
+%token COMA
 %token KEYOP
 %token KEYCL
 
@@ -48,44 +50,54 @@ extern FILE *yyin;
 %%
 
 programa:
-		declaracionG {fprintf(archSal,"DeclaracionesGlobales");}
-		|funcion  {fprintf(archSal,"DeclaracionesdeFuncion");}
-		|main		
+		declaracionG 
+		|main		{fprintf(archSal,"DeclaracionMain \n");}
+		|funcion  		
+		|declaracionG programa	
+		|funcion programa
+		|main programa	
 				;
 
 //declaracionG: TIPODEDATOENTERO IDENTIFICADOR IGUAL IDENTIFICADOR FinCommand	{fprintf(archSal,"declaracionEntero");};
 
 //libreria: INCLUDE LIBRERIA FinCommand ;    																																																																	
 funcion:
-		IDENTIFICADOR ParetOP declaracionParametro ParetCL FinCommand
-		| IDENTIFICADOR ParetOP declaracionParametro ParetCL "{" sentencia "}"
-		;
+		IDENTIFICADOR ParetOP declaracionParametro ParetCL FinCommand {fprintf(archSal,"LlamadaFuncion \n");}
+		|tipoDeDato IDENTIFICADOR ParetOP declaracionParametro ParetCL KEYOP declaracionVariable KEYCL {fprintf(archSal,"DeclaracionFuncion \n");}
+		|tipoDeDato IDENTIFICADOR ParetOP declaracionParametro ParetCL KEYOP  KEYCL {fprintf(archSal,"DeclaracionFuncion \n");}
+		|IDENTIFICADOR ParetOP  ParetCL FinCommand {fprintf(archSal,"LlamadaFuncion \n");}
+		
+		|tipoDeDato IDENTIFICADOR ParetOP ParetCL KEYOP programa KEYCL {fprintf(archSal,"DeclaracionFuncion \n");}
+		|tipoDeDato IDENTIFICADOR ParetOP ParetCL KEYOP  KEYCL {fprintf(archSal,"DeclaracionFuncion \n");}		
+;
 declaracionG:
-		declaracionLibreria
-		|declaracionFuncion
-		|declaracionVariable
+		declaracionLibreria {fprintf(archSal,"DeclaraciondeLibreria \n");}
+		|declaracionFuncion 
+		|declaracionVariable 
 		;
 declaracionLibreria:
-		INCLUDE LIBRERIA FinCommand					
+		INCLUDE LIBRERIA 				
 		;
 declaracionVariable:
-		TIPODEDATOBOOL IDENTIFICADOR IGUAL BOOLEANO FinCommand 	
-		|TIPODEDATOSTRING IDENTIFICADOR IGUAL CADENA FinCommand	
-		|TIPODEDATOENTERO IDENTIFICADOR IGUAL ENTERO FinCommand	
-		|TIPODEDATOFLOTANTE IDENTIFICADOR IGUAL FLOTANTE FinCommand	
-		|TIPODEDATOCHAR IDENTIFICADOR IGUAL CARACTER FinCommand	
-		|tipoDeDato IDENTIFICADOR IGUAL IDENTIFICADOR FinCommand	
+		TIPODEDATOBOOL IDENTIFICADOR IGUAL BOOLEANO FinCommand {fprintf(archSal,"DeclaracionBooleano\n");}	
+		|TIPODEDATOSTRING IDENTIFICADOR IGUAL CADENA FinCommand	{fprintf(archSal,"DeclaracionesCadena\n");}
+		|TIPODEDATOENTERO IDENTIFICADOR IGUAL ENTERO FinCommand	{fprintf(archSal,"DeclaracionesEntero\n");}
+		|TIPODEDATOFLOTANTE IDENTIFICADOR IGUAL FLOTANTE FinCommand	{fprintf(archSal,"DeclaracionesFlotante\n");}
+		|TIPODEDATOCHAR IDENTIFICADOR IGUAL CARACTER FinCommand	{fprintf(archSal,"DeclaracionesCaracter\n");}
+		|tipoDeDato IDENTIFICADOR IGUAL IDENTIFICADOR FinCommand	{fprintf(archSal,"Declaracion\n");}
+		|tipoDeDato IDENTIFICADOR FinCommand {fprintf(archSal,"Declaracion\n");}
 		;
 declaracionFuncion:
-		TIPODEDATOBOOL IDENTIFICADOR ParetOP declaracionParametro ParetCL FinCommand 	
-		|TIPODEDATOSTRING IDENTIFICADOR IGUAL CADENA ParetOP declaracionParametro ParetCL FinCommand	
-		|TIPODEDATOENTERO IDENTIFICADOR IGUAL ENTERO ParetOP declaracionParametro ParetCL FinCommand	
-		|TIPODEDATOFLOTANTE IDENTIFICADOR IGUAL FLOTANTE ParetOP declaracionParametro ParetCL FinCommand	
-		|TIPODEDATOCHAR IDENTIFICADOR IGUAL CARACTER ParetOP declaracionParametro ParetCL FinCommand	
-		|tipoDeDato IDENTIFICADOR IGUAL IDENTIFICADOR ParetOP declaracionParametro ParetCL FinCommand	
+		tipoDeDato IDENTIFICADOR ParetOP declaracionParametro ParetCL FinCommand {fprintf(archSal,"DeclaracionFuncion \n");}
+		|tipoDeDato IDENTIFICADOR ParetOP ParetCL FinCommand	{fprintf(archSal,"DeclaracionFuncion \n");}
+		
+		
 		;
 declaracionParametro:
-		tipoDeDato IDENTIFICADOR
+		tipoDeDato IDENTIFICADOR  
+		|IDENTIFICADOR
+		|tipoDeDato IDENTIFICADOR  COMA declaracionParametro
+		|IDENTIFICADOR COMA declaracionParametro
 		;
 tipoDeDato:
 		TIPODEDATOBOOL
@@ -93,12 +105,11 @@ tipoDeDato:
 		|TIPODEDATOENTERO
 		|TIPODEDATOFLOTANTE
 		|TIPODEDATOCHAR
+		|TIPODEDATOVOID
 		;
-sentencia:
-		declaracionVariable		|funcion
-		;
+
 main:
-		tipoDeDato "main" ParetOP declaracionParametro ParetCL "{" sentencia "}"
+		tipoDeDato "main" ParetOP declaracionParametro ParetCL "{" programa "}"
 		;
 
 

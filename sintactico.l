@@ -4,7 +4,7 @@ void yyerror(char *);
 int funcion();
 #include "sintactico.tab.h"
 %}
-caresp 		","|":"|"!"|"&"|"$"|"+"|"-"|"<"|">"
+caresp 		":"|"!"|"&"|"$"|"<"|">"
 compar 		"<="|">="|"=="|"!="|"&&"|"||"
 iden 		[a-z]([a-zA-Z]|[0-9])*
 entero 		[0-9]|"-"[0-9]|"+"[0-9]
@@ -44,6 +44,8 @@ comc 		"/*"[^"*/"]*
 {iden} 				return IDENTIFICADOR;
 {char}				return CARACTER;
 {string} 			return CADENA;
+"+"|"-"				return MASMENOS;
+"*"|"/"				return DIMULTI;
 ";"					{return FinCommand;}
 "{"					{return KEYOP;}
 "}"					{return KEYCL;}
@@ -51,6 +53,7 @@ comc 		"/*"[^"*/"]*
 ")"					{return ParetCL;}
 "["					{return BracketOP;}
 "]"					{return BracketCL;}
+","				return COMA;
 .				yyerror("invalid character");
 %%
 int yywrap(void){

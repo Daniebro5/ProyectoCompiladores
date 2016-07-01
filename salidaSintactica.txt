@@ -1,1 +1,10 @@
-DeclaracionesdeFuncion
+DeclaraciondeLibreria 
+DeclaraciondeLibreria 
+DeclaracionFuncion 
+LlamadaFuncion 
+DeclaracionesEntero
+DeclaracionesEntero
+DeclaracionesEntero
+LlamadaFuncion 
+DeclaracionFuncion 
+DeclaracionFuncion 

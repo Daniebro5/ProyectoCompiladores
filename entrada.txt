@@ -1,1 +1,38 @@
-hola(int a);
+#include <stdio.h>
+
+#include <conio.h>
+
+ 
+
+void hanoi(int n,int com, int aux, int fin);
+
+ 
+
+void main(){
+
+ 
+
+        clrscr();
+
+	int com=1;
+
+	int aux=1;
+
+	int fin=1;
+
+
+
+
+	hanoi(n,com,aux,fin);
+
+}
+
+ 
+
+void hanoi(int n,int com, int aux, int fin){
+
+ 
+
+
+
+}
