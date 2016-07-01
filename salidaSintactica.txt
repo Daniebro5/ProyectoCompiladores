@@ -1,0 +1,16 @@
+DeclaraciondeLibreria 
+DeclaraciondeLibreria 
+DeclaracionFuncion 
+LlamadaFuncion 
+DeclaracionesCaracter
+DeclaracionesCaracter
+DeclaracionesCaracter
+LlamadaFuncion 
+LlamadaFuncion 
+DeclaracionFuncion 
+DeclaracionesEntero
+IF 
+LlamadaFuncion 
+LlamadaFuncion 
+ELSE 
+DeclaracionFuncion 

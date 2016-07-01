@@ -1,0 +1,4 @@
+#/bin/bash
+bison -d sintactico.y
+flex sintactico.l
+gcc -o sintactico lex.yy.c sintactico.tab.c
