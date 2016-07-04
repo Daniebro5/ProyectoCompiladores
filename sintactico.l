@@ -3,6 +3,7 @@
 void yyerror(char *);
 int funcion();
 #include "sintactico.tab.h"
+int linea=0;
 %}
 caresp 		":"|"!"|"&"|"$"
 compar 		"<="|">="|"=="|"!="|"&&"|"||"|"<"|">"
@@ -18,7 +19,8 @@ tdd		"boolean"|"string"|"int"|"char"|"float"|"String"
 
 %%
 
-" "|\t|\n			;
+" "|\t 				;
+\n	     {linea++;}		;
 "#include" 			return INCLUDE;
 "<"[a-z]+".h>" 			return LIBRERIA;
 "if"      			return IF;

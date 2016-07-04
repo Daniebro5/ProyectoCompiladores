@@ -4,6 +4,7 @@
     int yylex(void); 
     void yyerror(char *);
 extern FILE *yyin;
+extern int linea;
  FILE *archSal;
 %}
 
@@ -178,7 +179,7 @@ usoAux2:
 
 %%
 void yyerror(char *s) { 
-   fprintf(stderr, "%s\n", s); 
+    fprintf(stderr, "Linea:%d, %s\n",linea+1,s); 
 } 
 void main(void) { 
 	yyin=fopen("entrada.txt","r");
