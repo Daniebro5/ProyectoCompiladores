@@ -1,19 +1,11 @@
 #include <stdio.h>
 #include <conio.h>
 void hanoi(int n,int com, int aux, int fin);
-int x = 2;
-int x = 2;
+int x= 2;
 int y[8];
 
-void main(){
-        clrscr();
-	char com='A';
-	char aux='B';
-	char fin='C';
-	fflush(stdin);
-	hanoi(n,com,aux,fin);
-}
-void hanoi(int n,int com, int aux, int fin){
+
+int hanoi(int n,int com, int aux, int fin){
 	if(n==1){
 		int x= 2;
 	}

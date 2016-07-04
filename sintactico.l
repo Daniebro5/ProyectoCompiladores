@@ -1,10 +1,11 @@
 %{
-#include <stdlib.h> 
-void yyerror(char *);
-int funcion();
-#include "sintactico.tab.h"
-int linea=0;
+	#include <stdlib.h> 
+	void yyerror(char *);
+	int funcion();
+	#include "sintactico.tab.h"
+	int linea=0;
 %}
+
 caresp 		":"|"!"|"&"|"$"
 compar 		"<="|">="|"=="|"!="|"&&"|"||"|"<"|">"
 iden 		[a-z]([a-zA-Z]|[0-9])*
@@ -19,8 +20,6 @@ tdd		"boolean"|"string"|"int"|"char"|"float"|"String"
 
 %%
 
-" "|\t 				;
-\n	     {linea++;}		;
 "#include" 			return INCLUDE;
 "<"[a-z]+".h>" 			return LIBRERIA;
 "if"      			return IF;
@@ -29,7 +28,6 @@ tdd		"boolean"|"string"|"int"|"char"|"float"|"String"
 "return"  			return RETURN;
 {tdd}				return TIPODEDATO;
 "void"    			return VOID;
-
 "then"    			return THEN;
 "while"   			return WHILE;
 "do"      			return DO;
@@ -42,21 +40,24 @@ tdd		"boolean"|"string"|"int"|"char"|"float"|"String"
 {bool} 				return BOOLEANO;
 {caresp}			return CARRESP;
 {compar} 			return COMPAR;			
-{iden} 				return IDENTIFICADOR;
 {char}				return CARACTER;
 {string} 			return CADENA;
+{iden} 				return IDENTIFICADOR;
 "+"|"-"				return MASMENOS;
 "*"|"/"				return DIMULTI;
-";"					{return FinCommand;}
-"{"					{return KEYOP;}
-"}"					{return KEYCL;}
-"("					{return ParetOP;}
-")"					{return ParetCL;}
-"["					{return BracketOP;}
-"]"					{return BracketCL;}
+";"				return FinCommand;
+"{"				return KEYOP;
+"}"				return KEYCL;
+"("				return ParetOP;
+")"				return ParetCL;
+"["				return BracketOP;
+"]"				return BracketCL;
 ","				return COMA;
+" "|\t				;
+\n				{linea++;};
 .				yyerror("invalid character");
 %%
-int yywrap(void){
-	return 1;
-}
+
+	int yywrap(void){
+		return 1;
+	}

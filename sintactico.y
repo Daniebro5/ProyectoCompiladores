@@ -1,11 +1,11 @@
 %{
-	 #include <stdio.h>
+	#include <stdio.h>
 	#include <stdlib.h> 
-    int yylex(void); 
-    void yyerror(char *);
-extern FILE *yyin;
-extern int linea;
- FILE *archSal;
+    	int yylex(void); 
+    	void yyerror(char *);
+	extern FILE *yyin;
+	extern int linea;
+ 	FILE *archSal;
 %}
 
 %token INCLUDE
@@ -49,141 +49,136 @@ extern int linea;
 %start programa
 %%
 
-
-
 programa:
-		declaracionG			{fprintf(archSal,"1\n");}
-		|definicionFuncion		{fprintf(archSal,"2\n");}
-		|declaracionG programa		{fprintf(archSal,"3\n");}
-		|definicionFuncion programa	{fprintf(archSal,"4\n");}
-		;
+	declaracionG			
+	|definicionFuncion		
+	|declaracionG programa		
+	|definicionFuncion programa	
+	;
 
 declaracionG:
-	declaracionLibreria		
-	|declaracionVariable		
-	|declaracionFuncion		
+	declaracionLibreria	{fprintf(archSal,"DeclaracionLibreria\n");}
+	|declaracionVariable	{fprintf(archSal,"DeclaracionVariable\n");}
+	|declaracionFuncion	{fprintf(archSal,"DeclaracionFuncion\n");}	
 	;
 
 declaracionLibreria:
-	INCLUDE LIBRERIA	{fprintf(archSal,"Librería\n");}
+	INCLUDE LIBRERIA
 	;
 
 declaracionVariable:
-	TIPODEDATO IDENTIFICADOR IGUAL BOOLEANO FinCommand 			{fprintf(archSal,"DeclaracionBooleano\n");}	
-	|TIPODEDATOSTRING IDENTIFICADOR IGUAL CADENA FinCommand			{fprintf(archSal,"DeclaracionesCadena\n");}
-	|TIPODEDATO IDENTIFICADOR IGUAL enteros FinCommand		{fprintf(archSal,"DeclaracionesEntero\n");}
-	|TIPODEDATO IDENTIFICADOR IGUAL FLOTANTE FinCommand		{fprintf(archSal,"DeclaracionesFlotante\n");}
-	|TIPODEDATO IDENTIFICADOR IGUAL CARACTER FinCommand			{fprintf(archSal,"DeclaracionesCaracter\n");}
-	|TIPODEDATO IDENTIFICADOR IGUAL IDENTIFICADOR FinCommand		{fprintf(archSal,"DeclaracionConIDs\n");}
-	|TIPODEDATO IDENTIFICADOR FinCommand 					{fprintf(archSal,"DeclaracionSinInicializacion\n");}
-	|TIPODEDATO IDENTIFICADOR BracketOP ENTEROPOSITIVO BracketCL FinCommand	{fprintf(archSal,"Declaracionvector\n");}
+	TIPODEDATO IDENTIFICADOR IGUAL BOOLEANO FinCommand 				
+	|TIPODEDATOSTRING IDENTIFICADOR IGUAL CADENA FinCommand	
+	|TIPODEDATO IDENTIFICADOR IGUAL enteros FinCommand	
+	|TIPODEDATO IDENTIFICADOR IGUAL FLOTANTE FinCommand	
+	|TIPODEDATO IDENTIFICADOR IGUAL CARACTER FinCommand	
+	|TIPODEDATO IDENTIFICADOR IGUAL IDENTIFICADOR FinCommand
+	|TIPODEDATO IDENTIFICADOR FinCommand 
+	|TIPODEDATO IDENTIFICADOR BracketOP ENTEROPOSITIVO BracketCL FinCommand
 	;			
   
 declaracionFuncion:
-	TIPODEDATO IDENTIFICADOR ParetOP parametroFuncion ParetCL FinCommand 	{fprintf(archSal,"DeclaracionFuncionpara\n");}
-	|TIPODEDATO IDENTIFICADOR ParetOP ParetCL FinCommand			{fprintf(archSal,"DeclaracionFuncion\n");}
-	|VOID IDENTIFICADOR ParetOP parametroFuncion ParetCL FinCommand 	{fprintf(archSal,"DeclaracionFuncionvoidpara\n");}
-	|VOID IDENTIFICADOR ParetOP ParetCL FinCommand				{fprintf(archSal,"DeclaracionFuncionvoid\n");}
+	TIPODEDATO IDENTIFICADOR ParetOP parametroFuncion ParetCL FinCommand
+	|TIPODEDATO IDENTIFICADOR ParetOP ParetCL FinCommand
+	|VOID IDENTIFICADOR ParetOP parametroFuncion ParetCL FinCommand
+	|VOID IDENTIFICADOR ParetOP ParetCL FinCommand
 	;
 
 parametroFuncion:
-	TIPODEDATO IDENTIFICADOR	{fprintf(archSal,"9\n");}
-	|TIPODEDATO IDENTIFICADOR COMA parametroFuncion	{fprintf(archSal,"10\n");}
+	TIPODEDATO IDENTIFICADOR
+	|TIPODEDATO IDENTIFICADOR COMA parametroFuncion
 	;
 
 definicionFuncion:
-	TIPODEDATO IDENTIFICADOR ParetOP parametroFuncion ParetCL KEYOP bloque KEYCL	{fprintf(archSal,"DefinicionFuncionpara\n");}
-	|TIPODEDATO IDENTIFICADOR ParetOP ParetCL KEYOP bloque KEYCL			{fprintf(archSal,"DefinicionFuncion\n");}
-	|VOID IDENTIFICADOR ParetOP parametroFuncion ParetCL KEYOP bloque KEYCL  	{fprintf(archSal,"DefiFuncionvoidpara\n");}
-	|VOID IDENTIFICADOR ParetOP ParetCL KEYOP bloque KEYCL			{fprintf(archSal,"DefinicionFuncionvoid\n");}
+	TIPODEDATO IDENTIFICADOR ParetOP parametroFuncion ParetCL KEYOP bloque KEYCL
+	|TIPODEDATO IDENTIFICADOR ParetOP ParetCL KEYOP bloque KEYCL			
+	|VOID IDENTIFICADOR ParetOP parametroFuncion ParetCL KEYOP bloque KEYCL  	
+	|VOID IDENTIFICADOR ParetOP ParetCL KEYOP bloque KEYCL			
 	;
-	
-
-
 
 bloque:
-	llamadaIf			{fprintf(archSal,"15\n");}
-	|llamadaWhile			{fprintf(archSal,"16\n");}
-	|llamadaDoWhile			{fprintf(archSal,"17\n");}
-	|llamadaFuncion			{fprintf(archSal,"18\n");}
-	|declaracionVariable 		{fprintf(archSal,"19\n");}
-	|usoVariable			{fprintf(archSal,"20\n");}
-	|llamadaIf bloque			{fprintf(archSal,"15\n");}
-	|llamadaWhile bloque			{fprintf(archSal,"16\n");}
-	|llamadaDoWhile	bloque		{fprintf(archSal,"17\n");}
-	|llamadaFuncion	bloque		{fprintf(archSal,"18\n");}
-	|declaracionVariable bloque		{fprintf(archSal,"19\n");}
-	|usoVariable bloque			{fprintf(archSal,"20\n");}
+	llamadaIf			
+	|llamadaWhile			
+	|llamadaDoWhile			
+	|llamadaFuncion			
+	|declaracionVariable 		
+	|usoVariable			
+	|llamadaIf bloque			
+	|llamadaWhile bloque			
+	|llamadaDoWhile	bloque		
+	|llamadaFuncion	bloque		
+	|declaracionVariable bloque		
+	|usoVariable bloque			
 	;
 
 llamadaIf:
-	IF ParetOP condicion ParetCL KEYOP bloque KEYCL				{fprintf(archSal,"llamadaIF\n");}
-	|IF ParetOP condicion ParetCL KEYOP bloque KEYCL ELSE KEYOP bloque KEYCL	{fprintf(archSal,"llamadaIF\n");}
+	IF ParetOP condicion ParetCL KEYOP bloque KEYCL				
+	|IF ParetOP condicion ParetCL KEYOP bloque KEYCL ELSE KEYOP bloque KEYCL	
 	;
 
 llamadaWhile:
-	WHILE ParetOP condicion ParetCL KEYOP bloque KEYCL				{fprintf(archSal,"llamadaWhile\n");}
+	WHILE ParetOP condicion ParetCL KEYOP bloque KEYCL				
 	;
 
 llamadaDoWhile:
-	DO KEYOP bloque KEYCL WHILE ParetOP condicion ParetCL FinCommand		{fprintf(archSal,"llamadaDoWhile\n");}
+	DO KEYOP bloque KEYCL WHILE ParetOP condicion ParetCL FinCommand		
 	;
 llamadaFuncion:
-	IDENTIFICADOR ParetOP parametroLlamada ParetCL FinCommand	{fprintf(archSal,"llamadaFuncionCon\n");}
-	IDENTIFICADOR ParetOP ParetCL FinCommand			{fprintf(archSal,"llamadaFuncionSin\n");}
+	IDENTIFICADOR ParetOP parametroLlamada ParetCL FinCommand	
+	IDENTIFICADOR ParetOP ParetCL FinCommand			
 	;
 
 parametroLlamada:
-	usoAux1					{fprintf(archSal,"21\n");}
-	|usoAux1 COMA parametroLlamada		{fprintf(archSal,"22\n");}
+	usoAux1					
+	|usoAux1 COMA parametroLlamada		
 	;
 
 condicion:      
-	BOOLEANO				{fprintf(archSal,"23\n");}
-	|usoAux1 COMPAR usoAux1			{fprintf(archSal,"24\n");}
-	|llamadaFuncion				{fprintf(archSal,"25\n");}
-	|llamadaFuncion COMPAR usoAux1		{fprintf(archSal,"26\n");}
-	|llamadaFuncion COMPAR llamadaFuncion	{fprintf(archSal,"27\n");}
+	BOOLEANO				
+	|usoAux1 COMPAR usoAux1			
+	|llamadaFuncion				
+	|llamadaFuncion COMPAR usoAux1		
+	|llamadaFuncion COMPAR llamadaFuncion	
 	;
 
 valor:		
-	enteros		{fprintf(archSal,"28\n");}
-	|FLOTANTE	{fprintf(archSal,"29\n");}
-	|CARACTER	{fprintf(archSal,"30\n");}
-	|CADENA		{fprintf(archSal,"31\n");}
+	enteros		
+	|FLOTANTE	
+	|CARACTER	
+	|CADENA		
 	;
 
 usoVariable:
-	IDENTIFICADOR IGUAL usoAux2		{fprintf(archSal,"32\n");}
+	IDENTIFICADOR IGUAL usoAux2		
 	;
-
-
 
 enteros:
-	ENTEROPOSITIVO		{fprintf(archSal,"38\n");}
-	|ENTERONEGATIVO		{fprintf(archSal,"39\n");}
+	ENTEROPOSITIVO		
+	|ENTERONEGATIVO		
 	;
 operacion:
-	MASMENOS		{fprintf(archSal,"40\n");}
-	|DIMULTI		{fprintf(archSal,"41\n");}
+	MASMENOS		
+	|DIMULTI		
 	;
 usoAux1:
-	IDENTIFICADOR		{fprintf(archSal,"42\n");}
-	|valor			{fprintf(archSal,"43\n");}
+	IDENTIFICADOR		
+	|valor			
 	;
 usoAux2:
-	usoAux1 FinCommand		{fprintf(archSal,"44\n");}
-	|usoAux1 operacion usoAux2	{fprintf(archSal,"45\n");}
+	usoAux1 FinCommand		
+	|usoAux1 operacion usoAux2	
 	;
 
 
 %%
-void yyerror(char *s) { 
-    fprintf(stderr, "Linea:%d, %s\n",linea+1,s); 
-} 
-void main(void) { 
-	yyin=fopen("entrada.txt","r");
-	archSal=fopen("salidaSintactica.txt","w");
-    	yyparse();  
-	fclose(archSal);
-} 
+
+	void yyerror(char *s) { 
+   		fprintf(stderr, "Linea: %d, %s",linea+1,s); 
+	} 
+
+	void main(void) { 
+		yyin=fopen("entrada.txt","r");
+		archSal=fopen("salidaSintactica.txt","w");
+	    	yyparse();  
+		fclose(archSal);
+	} 

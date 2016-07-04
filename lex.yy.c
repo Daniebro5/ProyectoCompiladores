@@ -375,8 +375,8 @@ static void yy_fatal_error (yyconst char msg[]  );
 	*yy_cp = '\0'; \
 	(yy_c_buf_p) = yy_cp;
 
-#define YY_NUM_RULES 36
-#define YY_END_OF_BUFFER 37
+#define YY_NUM_RULES 37
+#define YY_END_OF_BUFFER 38
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -386,21 +386,21 @@ struct yy_trans_info
 	};
 static yyconst flex_int16_t yy_accept[137] =
     {   0,
-        0,    0,   37,   35,    1,    1,   20,   35,   35,   20,
-       20,   35,   30,   31,   26,   25,   34,   25,   35,   16,
-       27,   21,   15,   21,   35,   35,   35,   32,   33,   22,
-       22,   22,   22,   22,   22,   22,   22,   22,   22,   22,
-       22,   22,   28,   35,   29,   21,    0,    0,    0,    0,
-        0,   16,    0,    0,   16,   18,    0,    0,    0,    0,
-        0,    0,   22,   22,   22,   12,   22,   22,   22,   22,
-        4,   22,   22,   22,   22,   22,   22,   22,   22,   24,
-        0,   23,   17,    0,    0,    0,    0,   22,   22,   22,
-       22,   22,    5,   22,    8,   22,   22,   22,   22,   22,
+        0,    0,   38,   36,   34,   35,   19,   36,   36,   19,
+       19,   36,   29,   30,   25,   24,   33,   24,   36,   15,
+       26,   20,   14,   20,   36,   36,   36,   31,   32,   23,
+       23,   23,   23,   23,   23,   23,   23,   23,   23,   23,
+       23,   23,   27,   36,   28,   20,    0,    0,    0,    0,
+        0,   15,    0,    0,   15,   17,    0,    0,    0,    0,
+        0,    0,   23,   23,   23,   11,   23,   23,   23,   23,
+        3,   23,   23,   23,   23,   23,   23,   23,   23,   22,
+        0,   21,   16,    0,    0,    0,    0,   23,   23,   23,
+       23,   23,    4,   23,    7,   23,   23,   23,   23,   23,
 
-       22,   22,    0,    0,    0,    0,   19,   22,    6,   22,
-       22,   22,   22,   22,   22,   10,   19,    9,   22,    0,
-        3,    0,   22,   13,   22,   22,   22,   11,    0,    8,
-       22,   14,    7,    0,    2,    0
+       23,   23,    0,    0,    0,    0,   18,   23,    5,   23,
+       23,   23,   23,   23,   23,    9,   18,    8,   23,    0,
+        2,    0,   23,   12,   23,   23,   23,   10,    0,    7,
+       23,   13,    6,    0,    1,    0
     } ;
 
 static yyconst YY_CHAR yy_ec[256] =
@@ -563,7 +563,8 @@ char *yytext;
 void yyerror(char *);
 int funcion();
 #include "sintactico.tab.h"
-#line 567 "lex.yy.c"
+int linea=0;
+#line 568 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -781,10 +782,10 @@ YY_DECL
 		}
 
 	{
-#line 19 "sintactico.l"
+#line 20 "sintactico.l"
 
 
-#line 788 "lex.yy.c"
+#line 789 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -842,187 +843,192 @@ do_action:	/* This label is used only to access EOF actions. */
 			goto yy_find_action;
 
 case 1:
-/* rule 1 can match eol */
-YY_RULE_SETUP
-#line 21 "sintactico.l"
-;
-	YY_BREAK
-case 2:
 YY_RULE_SETUP
 #line 22 "sintactico.l"
 return INCLUDE;
 	YY_BREAK
-case 3:
+case 2:
 YY_RULE_SETUP
 #line 23 "sintactico.l"
 return LIBRERIA;
 	YY_BREAK
-case 4:
+case 3:
 YY_RULE_SETUP
 #line 24 "sintactico.l"
 return IF;
 	YY_BREAK
-case 5:
+case 4:
 YY_RULE_SETUP
 #line 25 "sintactico.l"
 return FOR;
 	YY_BREAK
-case 6:
+case 5:
 YY_RULE_SETUP
 #line 26 "sintactico.l"
 return ELSE;
 	YY_BREAK
-case 7:
+case 6:
 YY_RULE_SETUP
 #line 27 "sintactico.l"
 return RETURN;
 	YY_BREAK
-case 8:
+case 7:
 YY_RULE_SETUP
 #line 28 "sintactico.l"
 return TIPODEDATO;
 	YY_BREAK
-case 9:
+case 8:
 YY_RULE_SETUP
 #line 29 "sintactico.l"
 return VOID;
 	YY_BREAK
-case 10:
+case 9:
 YY_RULE_SETUP
 #line 31 "sintactico.l"
 return THEN;
 	YY_BREAK
-case 11:
+case 10:
 YY_RULE_SETUP
 #line 32 "sintactico.l"
 return WHILE;
 	YY_BREAK
-case 12:
+case 11:
 YY_RULE_SETUP
 #line 33 "sintactico.l"
 return DO;
 	YY_BREAK
-case 13:
+case 12:
 YY_RULE_SETUP
 #line 34 "sintactico.l"
 return INPUT;
 	YY_BREAK
-case 14:
+case 13:
 YY_RULE_SETUP
 #line 35 "sintactico.l"
 return OUTPUT;
 	YY_BREAK
-case 15:
+case 14:
 YY_RULE_SETUP
 #line 36 "sintactico.l"
 return IGUAL;
 	YY_BREAK
-case 16:
+case 15:
 YY_RULE_SETUP
 #line 37 "sintactico.l"
 return ENTEROPOSITIVO;
 	YY_BREAK
-case 17:
+case 16:
 YY_RULE_SETUP
 #line 38 "sintactico.l"
 return ENTERONEGATIVO;
 	YY_BREAK
-case 18:
+case 17:
 YY_RULE_SETUP
 #line 39 "sintactico.l"
 return FLOTANTE;
 	YY_BREAK
-case 19:
+case 18:
 YY_RULE_SETUP
 #line 40 "sintactico.l"
 return BOOLEANO;
 	YY_BREAK
-case 20:
+case 19:
 YY_RULE_SETUP
 #line 41 "sintactico.l"
 return CARRESP;
 	YY_BREAK
-case 21:
+case 20:
 YY_RULE_SETUP
 #line 42 "sintactico.l"
 return COMPAR;			
 	YY_BREAK
-case 22:
-YY_RULE_SETUP
-#line 43 "sintactico.l"
-return IDENTIFICADOR;
-	YY_BREAK
-case 23:
+case 21:
 YY_RULE_SETUP
 #line 44 "sintactico.l"
 return CARACTER;
 	YY_BREAK
-case 24:
+case 22:
 YY_RULE_SETUP
 #line 45 "sintactico.l"
 return CADENA;
 	YY_BREAK
-case 25:
+case 23:
 YY_RULE_SETUP
 #line 46 "sintactico.l"
+return IDENTIFICADOR;
+	YY_BREAK
+case 24:
+YY_RULE_SETUP
+#line 47 "sintactico.l"
 return MASMENOS;
+	YY_BREAK
+case 25:
+YY_RULE_SETUP
+#line 48 "sintactico.l"
+return DIMULTI;
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 47 "sintactico.l"
-return DIMULTI;
+#line 49 "sintactico.l"
+{return FinCommand;}
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 48 "sintactico.l"
-{return FinCommand;}
+#line 50 "sintactico.l"
+{return KEYOP;}
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 49 "sintactico.l"
-{return KEYOP;}
+#line 51 "sintactico.l"
+{return KEYCL;}
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 50 "sintactico.l"
-{return KEYCL;}
+#line 52 "sintactico.l"
+{return ParetOP;}
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 51 "sintactico.l"
-{return ParetOP;}
+#line 53 "sintactico.l"
+{return ParetCL;}
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 52 "sintactico.l"
-{return ParetCL;}
+#line 54 "sintactico.l"
+{return BracketOP;}
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 53 "sintactico.l"
-{return BracketOP;}
+#line 55 "sintactico.l"
+{return BracketCL;}
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 54 "sintactico.l"
-{return BracketCL;}
+#line 56 "sintactico.l"
+return COMA;
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 55 "sintactico.l"
-return COMA;
+#line 57 "sintactico.l"
+;
 	YY_BREAK
 case 35:
+/* rule 35 can match eol */
 YY_RULE_SETUP
-#line 56 "sintactico.l"
-yyerror("invalid character");
+#line 58 "sintactico.l"
+{linea++;};
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 57 "sintactico.l"
+#line 59 "sintactico.l"
+yyerror("invalid character");
+	YY_BREAK
+case 37:
+YY_RULE_SETUP
+#line 60 "sintactico.l"
 ECHO;
 	YY_BREAK
-#line 1026 "lex.yy.c"
+#line 1032 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2023,7 +2029,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 57 "sintactico.l"
+#line 60 "sintactico.l"
 
 
 int yywrap(void){

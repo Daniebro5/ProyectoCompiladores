@@ -69,9 +69,10 @@
     int yylex(void); 
     void yyerror(char *);
 extern FILE *yyin;
+extern int linea;
  FILE *archSal;
 
-#line 75 "sintactico.tab.c" /* yacc.c:339  */
+#line 76 "sintactico.tab.c" /* yacc.c:339  */
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -163,7 +164,7 @@ int yyparse (void);
 
 /* Copy the second part of user declarations.  */
 
-#line 167 "sintactico.tab.c" /* yacc.c:358  */
+#line 168 "sintactico.tab.c" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -464,13 +465,13 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    54,    54,    55,    56,    57,    61,    62,    63,    67,
-      71,    72,    73,    74,    75,    76,    77,    78,    82,    83,
-      84,    85,    89,    90,    94,    95,    96,    97,   104,   105,
-     106,   107,   108,   109,   110,   111,   112,   113,   114,   115,
-     119,   120,   124,   128,   131,   131,   136,   137,   141,   142,
-     143,   144,   145,   149,   150,   151,   152,   156,   162,   163,
-     166,   167,   170,   171,   174,   175
+       0,    55,    55,    57,    59,    61,    66,    67,    68,    72,
+      77,    79,    81,    83,    85,    87,    89,    91,    96,    97,
+      98,    99,   103,   104,   108,   109,   110,   111,   118,   119,
+     120,   121,   122,   123,   124,   125,   126,   127,   128,   129,
+     133,   134,   138,   142,   146,   145,   152,   153,   157,   158,
+     159,   160,   161,   165,   166,   167,   168,   172,   178,   179,
+     182,   183,   186,   187,   190,   191
 };
 #endif
 
@@ -1339,373 +1340,373 @@ yyreduce:
   switch (yyn)
     {
         case 2:
-#line 54 "sintactico.y" /* yacc.c:1646  */
+#line 56 "sintactico.y" /* yacc.c:1646  */
     {fprintf(archSal,"1\n");}
-#line 1345 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1346 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 3:
-#line 55 "sintactico.y" /* yacc.c:1646  */
+#line 58 "sintactico.y" /* yacc.c:1646  */
     {fprintf(archSal,"2\n");}
-#line 1351 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1352 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 4:
-#line 56 "sintactico.y" /* yacc.c:1646  */
+#line 60 "sintactico.y" /* yacc.c:1646  */
     {fprintf(archSal,"3\n");}
-#line 1357 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1358 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 5:
-#line 57 "sintactico.y" /* yacc.c:1646  */
+#line 62 "sintactico.y" /* yacc.c:1646  */
     {fprintf(archSal,"4\n");}
-#line 1363 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1364 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 9:
-#line 67 "sintactico.y" /* yacc.c:1646  */
+#line 73 "sintactico.y" /* yacc.c:1646  */
     {fprintf(archSal,"Librería\n");}
-#line 1369 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1370 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 10:
-#line 71 "sintactico.y" /* yacc.c:1646  */
+#line 78 "sintactico.y" /* yacc.c:1646  */
     {fprintf(archSal,"DeclaracionBooleano\n");}
-#line 1375 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1376 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 11:
-#line 72 "sintactico.y" /* yacc.c:1646  */
+#line 80 "sintactico.y" /* yacc.c:1646  */
     {fprintf(archSal,"DeclaracionesCadena\n");}
-#line 1381 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1382 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 12:
-#line 73 "sintactico.y" /* yacc.c:1646  */
+#line 82 "sintactico.y" /* yacc.c:1646  */
     {fprintf(archSal,"DeclaracionesEntero\n");}
-#line 1387 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1388 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 13:
-#line 74 "sintactico.y" /* yacc.c:1646  */
+#line 84 "sintactico.y" /* yacc.c:1646  */
     {fprintf(archSal,"DeclaracionesFlotante\n");}
-#line 1393 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1394 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 14:
-#line 75 "sintactico.y" /* yacc.c:1646  */
+#line 86 "sintactico.y" /* yacc.c:1646  */
     {fprintf(archSal,"DeclaracionesCaracter\n");}
-#line 1399 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1400 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 15:
-#line 76 "sintactico.y" /* yacc.c:1646  */
+#line 88 "sintactico.y" /* yacc.c:1646  */
     {fprintf(archSal,"DeclaracionConIDs\n");}
-#line 1405 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1406 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 16:
-#line 77 "sintactico.y" /* yacc.c:1646  */
+#line 90 "sintactico.y" /* yacc.c:1646  */
     {fprintf(archSal,"DeclaracionSinInicializacion\n");}
-#line 1411 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1412 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 17:
-#line 78 "sintactico.y" /* yacc.c:1646  */
+#line 92 "sintactico.y" /* yacc.c:1646  */
     {fprintf(archSal,"Declaracionvector\n");}
-#line 1417 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1418 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 18:
-#line 82 "sintactico.y" /* yacc.c:1646  */
+#line 96 "sintactico.y" /* yacc.c:1646  */
     {fprintf(archSal,"DeclaracionFuncionpara\n");}
-#line 1423 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1424 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 19:
-#line 83 "sintactico.y" /* yacc.c:1646  */
+#line 97 "sintactico.y" /* yacc.c:1646  */
     {fprintf(archSal,"DeclaracionFuncion\n");}
-#line 1429 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1430 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 20:
-#line 84 "sintactico.y" /* yacc.c:1646  */
+#line 98 "sintactico.y" /* yacc.c:1646  */
     {fprintf(archSal,"DeclaracionFuncionvoidpara\n");}
-#line 1435 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1436 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 21:
-#line 85 "sintactico.y" /* yacc.c:1646  */
+#line 99 "sintactico.y" /* yacc.c:1646  */
     {fprintf(archSal,"DeclaracionFuncionvoid\n");}
-#line 1441 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1442 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 22:
-#line 89 "sintactico.y" /* yacc.c:1646  */
+#line 103 "sintactico.y" /* yacc.c:1646  */
     {fprintf(archSal,"9\n");}
-#line 1447 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1448 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 23:
-#line 90 "sintactico.y" /* yacc.c:1646  */
+#line 104 "sintactico.y" /* yacc.c:1646  */
     {fprintf(archSal,"10\n");}
-#line 1453 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1454 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 24:
-#line 94 "sintactico.y" /* yacc.c:1646  */
+#line 108 "sintactico.y" /* yacc.c:1646  */
     {fprintf(archSal,"DefinicionFuncionpara\n");}
-#line 1459 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1460 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 25:
-#line 95 "sintactico.y" /* yacc.c:1646  */
+#line 109 "sintactico.y" /* yacc.c:1646  */
     {fprintf(archSal,"DefinicionFuncion\n");}
-#line 1465 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1466 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 26:
-#line 96 "sintactico.y" /* yacc.c:1646  */
+#line 110 "sintactico.y" /* yacc.c:1646  */
     {fprintf(archSal,"DefiFuncionvoidpara\n");}
-#line 1471 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1472 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 27:
-#line 97 "sintactico.y" /* yacc.c:1646  */
+#line 111 "sintactico.y" /* yacc.c:1646  */
     {fprintf(archSal,"DefinicionFuncionvoid\n");}
-#line 1477 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1478 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 28:
-#line 104 "sintactico.y" /* yacc.c:1646  */
+#line 118 "sintactico.y" /* yacc.c:1646  */
     {fprintf(archSal,"15\n");}
-#line 1483 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1484 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 29:
-#line 105 "sintactico.y" /* yacc.c:1646  */
+#line 119 "sintactico.y" /* yacc.c:1646  */
     {fprintf(archSal,"16\n");}
-#line 1489 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1490 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 30:
-#line 106 "sintactico.y" /* yacc.c:1646  */
+#line 120 "sintactico.y" /* yacc.c:1646  */
     {fprintf(archSal,"17\n");}
-#line 1495 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1496 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 31:
-#line 107 "sintactico.y" /* yacc.c:1646  */
+#line 121 "sintactico.y" /* yacc.c:1646  */
     {fprintf(archSal,"18\n");}
-#line 1501 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1502 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 32:
-#line 108 "sintactico.y" /* yacc.c:1646  */
+#line 122 "sintactico.y" /* yacc.c:1646  */
     {fprintf(archSal,"19\n");}
-#line 1507 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1508 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 33:
-#line 109 "sintactico.y" /* yacc.c:1646  */
+#line 123 "sintactico.y" /* yacc.c:1646  */
     {fprintf(archSal,"20\n");}
-#line 1513 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1514 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 34:
-#line 110 "sintactico.y" /* yacc.c:1646  */
+#line 124 "sintactico.y" /* yacc.c:1646  */
     {fprintf(archSal,"15\n");}
-#line 1519 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1520 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 35:
-#line 111 "sintactico.y" /* yacc.c:1646  */
+#line 125 "sintactico.y" /* yacc.c:1646  */
     {fprintf(archSal,"16\n");}
-#line 1525 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1526 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 36:
-#line 112 "sintactico.y" /* yacc.c:1646  */
+#line 126 "sintactico.y" /* yacc.c:1646  */
     {fprintf(archSal,"17\n");}
-#line 1531 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1532 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 37:
-#line 113 "sintactico.y" /* yacc.c:1646  */
+#line 127 "sintactico.y" /* yacc.c:1646  */
     {fprintf(archSal,"18\n");}
-#line 1537 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1538 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 38:
-#line 114 "sintactico.y" /* yacc.c:1646  */
+#line 128 "sintactico.y" /* yacc.c:1646  */
     {fprintf(archSal,"19\n");}
-#line 1543 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1544 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 39:
-#line 115 "sintactico.y" /* yacc.c:1646  */
+#line 129 "sintactico.y" /* yacc.c:1646  */
     {fprintf(archSal,"20\n");}
-#line 1549 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1550 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 40:
-#line 119 "sintactico.y" /* yacc.c:1646  */
+#line 133 "sintactico.y" /* yacc.c:1646  */
     {fprintf(archSal,"llamadaIF\n");}
-#line 1555 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1556 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 41:
-#line 120 "sintactico.y" /* yacc.c:1646  */
+#line 134 "sintactico.y" /* yacc.c:1646  */
     {fprintf(archSal,"llamadaIF\n");}
-#line 1561 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1562 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 42:
-#line 124 "sintactico.y" /* yacc.c:1646  */
+#line 138 "sintactico.y" /* yacc.c:1646  */
     {fprintf(archSal,"llamadaWhile\n");}
-#line 1567 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1568 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 43:
-#line 128 "sintactico.y" /* yacc.c:1646  */
+#line 142 "sintactico.y" /* yacc.c:1646  */
     {fprintf(archSal,"llamadaDoWhile\n");}
-#line 1573 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1574 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 44:
-#line 131 "sintactico.y" /* yacc.c:1646  */
-    {fprintf(archSal,"llamadaFuncionCon\n");}
-#line 1579 "sintactico.tab.c" /* yacc.c:1646  */
+#line 146 "sintactico.y" /* yacc.c:1646  */
+    {fprintf(archSal,"llamadaFuncionConParametro\n");}
+#line 1580 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 45:
-#line 132 "sintactico.y" /* yacc.c:1646  */
+#line 148 "sintactico.y" /* yacc.c:1646  */
     {fprintf(archSal,"llamadaFuncionSin\n");}
-#line 1585 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1586 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 46:
-#line 136 "sintactico.y" /* yacc.c:1646  */
+#line 152 "sintactico.y" /* yacc.c:1646  */
     {fprintf(archSal,"21\n");}
-#line 1591 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1592 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 47:
-#line 137 "sintactico.y" /* yacc.c:1646  */
+#line 153 "sintactico.y" /* yacc.c:1646  */
     {fprintf(archSal,"22\n");}
-#line 1597 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1598 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 48:
-#line 141 "sintactico.y" /* yacc.c:1646  */
+#line 157 "sintactico.y" /* yacc.c:1646  */
     {fprintf(archSal,"23\n");}
-#line 1603 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1604 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 49:
-#line 142 "sintactico.y" /* yacc.c:1646  */
+#line 158 "sintactico.y" /* yacc.c:1646  */
     {fprintf(archSal,"24\n");}
-#line 1609 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1610 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 50:
-#line 143 "sintactico.y" /* yacc.c:1646  */
+#line 159 "sintactico.y" /* yacc.c:1646  */
     {fprintf(archSal,"25\n");}
-#line 1615 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1616 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 51:
-#line 144 "sintactico.y" /* yacc.c:1646  */
+#line 160 "sintactico.y" /* yacc.c:1646  */
     {fprintf(archSal,"26\n");}
-#line 1621 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1622 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 52:
-#line 145 "sintactico.y" /* yacc.c:1646  */
+#line 161 "sintactico.y" /* yacc.c:1646  */
     {fprintf(archSal,"27\n");}
-#line 1627 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1628 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 53:
-#line 149 "sintactico.y" /* yacc.c:1646  */
+#line 165 "sintactico.y" /* yacc.c:1646  */
     {fprintf(archSal,"28\n");}
-#line 1633 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1634 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 54:
-#line 150 "sintactico.y" /* yacc.c:1646  */
+#line 166 "sintactico.y" /* yacc.c:1646  */
     {fprintf(archSal,"29\n");}
-#line 1639 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1640 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 55:
-#line 151 "sintactico.y" /* yacc.c:1646  */
+#line 167 "sintactico.y" /* yacc.c:1646  */
     {fprintf(archSal,"30\n");}
-#line 1645 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1646 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 56:
-#line 152 "sintactico.y" /* yacc.c:1646  */
+#line 168 "sintactico.y" /* yacc.c:1646  */
     {fprintf(archSal,"31\n");}
-#line 1651 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1652 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 57:
-#line 156 "sintactico.y" /* yacc.c:1646  */
+#line 172 "sintactico.y" /* yacc.c:1646  */
     {fprintf(archSal,"32\n");}
-#line 1657 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1658 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 58:
-#line 162 "sintactico.y" /* yacc.c:1646  */
+#line 178 "sintactico.y" /* yacc.c:1646  */
     {fprintf(archSal,"38\n");}
-#line 1663 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1664 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 59:
-#line 163 "sintactico.y" /* yacc.c:1646  */
+#line 179 "sintactico.y" /* yacc.c:1646  */
     {fprintf(archSal,"39\n");}
-#line 1669 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1670 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 60:
-#line 166 "sintactico.y" /* yacc.c:1646  */
+#line 182 "sintactico.y" /* yacc.c:1646  */
     {fprintf(archSal,"40\n");}
-#line 1675 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1676 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 61:
-#line 167 "sintactico.y" /* yacc.c:1646  */
+#line 183 "sintactico.y" /* yacc.c:1646  */
     {fprintf(archSal,"41\n");}
-#line 1681 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1682 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 62:
-#line 170 "sintactico.y" /* yacc.c:1646  */
+#line 186 "sintactico.y" /* yacc.c:1646  */
     {fprintf(archSal,"42\n");}
-#line 1687 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1688 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 63:
-#line 171 "sintactico.y" /* yacc.c:1646  */
+#line 187 "sintactico.y" /* yacc.c:1646  */
     {fprintf(archSal,"43\n");}
-#line 1693 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1694 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 64:
-#line 174 "sintactico.y" /* yacc.c:1646  */
+#line 190 "sintactico.y" /* yacc.c:1646  */
     {fprintf(archSal,"44\n");}
-#line 1699 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1700 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
   case 65:
-#line 175 "sintactico.y" /* yacc.c:1646  */
+#line 191 "sintactico.y" /* yacc.c:1646  */
     {fprintf(archSal,"45\n");}
-#line 1705 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1706 "sintactico.tab.c" /* yacc.c:1646  */
     break;
 
 
-#line 1709 "sintactico.tab.c" /* yacc.c:1646  */
+#line 1710 "sintactico.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1933,10 +1934,10 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 179 "sintactico.y" /* yacc.c:1906  */
+#line 195 "sintactico.y" /* yacc.c:1906  */
 
 void yyerror(char *s) { 
-   fprintf(stderr, "%s\n", s); 
+   fprintf(stderr, "Linea: %d, %s",linea+1,s); 
 } 
 void main(void) { 
 	yyin=fopen("entrada.txt","r");
