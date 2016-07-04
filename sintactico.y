@@ -1,11 +1,14 @@
 %{
-	#include <stdio.h>
+	 #include <stdio.h>
 	#include <stdlib.h> 
-    	int yylex(void); 
-    	void yyerror(char *);
-	extern FILE *yyin;
-	extern int linea;
- 	FILE *archSal;
+    int yylex(void); 
+    void yyerror(char *);
+extern FILE *yyin;
+extern int linea;
+extern char *yytext;
+
+ FILE *archSal;
+   FILE *archSal1;
 %}
 
 %token INCLUDE
@@ -66,15 +69,21 @@ declaracionLibreria:
 	INCLUDE LIBRERIA
 	;
 
+tipoDeDato:
+		TIPODEDATOBOOL {fprintf(archSal1,"%s,",yytext );}
+		|TIPODEDATOSTRING {fprintf(archSal1,"%s,",yytext );}
+		|TIPODEDATOENTERO {fprintf(archSal1,"entero,");} 
+		|TIPODEDATOFLOTANTE {fprintf(archSal1,"%s,",yytext );}
+		|TIPODEDATOCHAR {fprintf(archSal1,"%s,",yytext );}
+		;
+
+
 declaracionVariable:
-	TIPODEDATO IDENTIFICADOR IGUAL BOOLEANO FinCommand 				
-	|TIPODEDATOSTRING IDENTIFICADOR IGUAL CADENA FinCommand	
-	|TIPODEDATO IDENTIFICADOR IGUAL enteros FinCommand	
-	|TIPODEDATO IDENTIFICADOR IGUAL FLOTANTE FinCommand	
-	|TIPODEDATO IDENTIFICADOR IGUAL CARACTER FinCommand	
-	|TIPODEDATO IDENTIFICADOR IGUAL IDENTIFICADOR FinCommand
-	|TIPODEDATO IDENTIFICADOR FinCommand 
-	|TIPODEDATO IDENTIFICADOR BracketOP ENTEROPOSITIVO BracketCL FinCommand
+	 				
+	tipoDeDato IDENTIFICADOR IGUAL valor FinCommand	
+	|tipoDeDato IDENTIFICADOR IGUAL IDENTIFICADOR FinCommand
+	|tipoDeDato IDENTIFICADOR FinCommand 
+	|tipoDeDato IDENTIFICADOR BracketOP ENTEROPOSITIVO BracketCL FinCommand
 	;			
   
 declaracionFuncion:
@@ -125,7 +134,7 @@ llamadaDoWhile:
 	;
 llamadaFuncion:
 	IDENTIFICADOR ParetOP parametroLlamada ParetCL FinCommand	
-	IDENTIFICADOR ParetOP ParetCL FinCommand			
+	|IDENTIFICADOR ParetOP ParetCL FinCommand			
 	;
 
 parametroLlamada:
@@ -143,9 +152,9 @@ condicion:
 
 valor:		
 	enteros		
-	|FLOTANTE	
-	|CARACTER	
-	|CADENA		
+	|FLOTANTE {fprintf(archSal1,"%s \n",yytext );}	
+	|CARACTER {fprintf(archSal1,"%s \n",yytext );}	
+	|CADENA	{fprintf(archSal1,"%s \n",yytext );}	
 	;
 
 usoVariable:
@@ -153,12 +162,13 @@ usoVariable:
 	;
 
 enteros:
-	ENTEROPOSITIVO		
-	|ENTERONEGATIVO		
+	ENTEROPOSITIVO	{fprintf(archSal1,"%s \n",yytext); }	
+	|ENTERONEGATIVO	{fprintf(archSal1,"%s \n",yytext); }	
 	;
 operacion:
 	MASMENOS		
-	|DIMULTI		
+	|DIMULTI
+	
 	;
 usoAux1:
 	IDENTIFICADOR		
@@ -171,14 +181,13 @@ usoAux2:
 
 
 %%
-
 	void yyerror(char *s) { 
    		fprintf(stderr, "Linea: %d, %s",linea+1,s); 
 	} 
-
 	void main(void) { 
 		yyin=fopen("entrada.txt","r");
 		archSal=fopen("salidaSintactica.txt","w");
+		archSal1=fopen("tabladeSimbolos.csv","w");
 	    	yyparse();  
 		fclose(archSal);
 	} 

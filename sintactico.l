@@ -1,22 +1,24 @@
+
 %{
 	#include <stdlib.h> 
 	void yyerror(char *);
 	int funcion();
 	#include "sintactico.tab.h"
 	int linea=0;
+	
 %}
 
 caresp 		":"|"!"|"&"|"$"
 compar 		"<="|">="|"=="|"!="|"&&"|"||"|"<"|">"
 iden 		[a-z]([a-zA-Z]|[0-9])*
-digito 		[0-9]|"-"[0-9]|"+"[0-9]
+digito 		[0-9]
 float 		[0-9]*"."[0-9]+
 bool 		"True"|"False"|"true"|"false"
 char 		"'"[a-zA-Z]{1}"'"
 string 		\"[^\n"]+\"
 coms 		"//".*?
 comc 		"/*"[^"*/"]*
-tdd		"boolean"|"string"|"int"|"char"|"float"|"String"
+
 
 %%
 
@@ -26,15 +28,21 @@ tdd		"boolean"|"string"|"int"|"char"|"float"|"String"
 "for"      			return FOR;
 "else"     			return ELSE;
 "return"  			return RETURN;
-{tdd}				return TIPODEDATO;
+"int"				return TIPODEDATOENTERO;
+"boolean"			return TIPODEDATOBOOL;
+"string"			return TIPODEDATOSTRING;
+"char"				return TIPODEDATOCHAR;
+"float"				return TIPODEDATOFLOTANTE;
+"String"			return TIPODEDATOSTRING;
 "void"    			return VOID;
 "then"    			return THEN;
 "while"   			return WHILE;
 "do"      			return DO;
 "input"   			return INPUT;
 "output"  			return OUTPUT;
+{iden} 				{return IDENTIFICADOR;}
 "="				return IGUAL;
-{digito}|"+"{digito}	 	return ENTEROPOSITIVO;
+{digito}+|"+"{digito}+	 	return ENTEROPOSITIVO;
 "-"{digito}+			return ENTERONEGATIVO;
 {float} 			return FLOTANTE;
 {bool} 				return BOOLEANO;
@@ -42,7 +50,6 @@ tdd		"boolean"|"string"|"int"|"char"|"float"|"String"
 {compar} 			return COMPAR;			
 {char}				return CARACTER;
 {string} 			return CADENA;
-{iden} 				return IDENTIFICADOR;
 "+"|"-"				return MASMENOS;
 "*"|"/"				return DIMULTI;
 ";"				return FinCommand;
