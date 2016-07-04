@@ -5,6 +5,8 @@
 	int funcion();
 	#include "sintactico.tab.h"
 	int linea=0;
+	extern char *yytext;
+	FILE *archSal1;
 	
 %}
 
@@ -14,10 +16,11 @@ iden 		[a-z]([a-zA-Z]|[0-9])*
 digito 		[0-9]
 float 		[0-9]*"."[0-9]+
 bool 		"True"|"False"|"true"|"false"
-char 		"'"[a-zA-Z]{1}"'"
+char 		"'"[a-zA-Z]"'"
 string 		\"[^\n"]+\"
 coms 		"//".*?
 comc 		"/*"[^"*/"]*
+tdd		"char"|"int"|"double"|"boolean"|"string"|"String"|"float"
 
 
 %%
@@ -28,19 +31,14 @@ comc 		"/*"[^"*/"]*
 "for"      			return FOR;
 "else"     			return ELSE;
 "return"  			return RETURN;
-"int"				return TIPODEDATOENTERO;
-"boolean"			return TIPODEDATOBOOL;
-"string"			return TIPODEDATOSTRING;
-"char"				return TIPODEDATOCHAR;
-"float"				return TIPODEDATOFLOTANTE;
-"String"			return TIPODEDATOSTRING;
-"void"    			return VOID;
+{tdd}				{fprintf(archSal1,"\n%s,",yytext); return TIPODEDATO;}
+"void"    			{fprintf(archSal1,"\n%s,",yytext );return VOID;}
 "then"    			return THEN;
 "while"   			return WHILE;
 "do"      			return DO;
 "input"   			return INPUT;
 "output"  			return OUTPUT;
-{iden} 				{return IDENTIFICADOR;}
+{iden} 				{fprintf(archSal1,"%s,",yytext );return IDENTIFICADOR;}
 "="				return IGUAL;
 {digito}+|"+"{digito}+	 	return ENTEROPOSITIVO;
 "-"{digito}+			return ENTERONEGATIVO;

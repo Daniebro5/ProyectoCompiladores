@@ -19,12 +19,7 @@ extern char *yytext;
 %token FOR
 %token ELSE
 %token RETURN
-%token TIPODEDATOBOOL
-%token TIPODEDATOSTRING
-%token TIPODEDATOENTERO
 %token VOID
-%token TIPODEDATOFLOTANTE
-%token TIPODEDATOCHAR
 %token THEN
 %token WHILE
 %token DO
@@ -50,6 +45,7 @@ extern char *yytext;
 %token BracketCL
 %token FinCommand
 %start programa
+
 %%
 
 programa:
@@ -66,36 +62,21 @@ declaracionG:
 	;
 
 declaracionLibreria:
-	INCLUDE LIBRERIA
+	INCLUDE LIBRERIA	{fprintf(archSal1,"Libreria,%s\n",yytext);}
 	;
 
-tipoDeDato:
-		TIPODEDATOBOOL {fprintf(archSal1,"%s,",yytext );}
-		|TIPODEDATOSTRING {fprintf(archSal1,"%s,",yytext );}
-		|TIPODEDATOENTERO {fprintf(archSal1,"entero,");} 
-		|TIPODEDATOFLOTANTE {fprintf(archSal1,"%s,",yytext );}
-		|TIPODEDATOCHAR {fprintf(archSal1,"%s,",yytext );}
-		;
-
-
-declaracionVariable:
-	 				
-	tipoDeDato IDENTIFICADOR IGUAL valor FinCommand	
-	|tipoDeDato IDENTIFICADOR IGUAL IDENTIFICADOR FinCommand
-	|tipoDeDato IDENTIFICADOR FinCommand 
-	|tipoDeDato IDENTIFICADOR BracketOP ENTEROPOSITIVO BracketCL FinCommand
+declaracionVariable:		
+	TIPODEDATO IDENTIFICADOR IGUAL valor FinCommand	{fprintf(archSal1,"%s,%s,\n",yytext,yytext);}
+	|TIPODEDATO IDENTIFICADOR IGUAL IDENTIFICADOR FinCommand{fprintf(archSal1,"%s,%s,\n",yytext,yytext);}
+	|TIPODEDATO IDENTIFICADOR FinCommand {fprintf(archSal1,"%s,%s,\n",yytext,yytext);}
+	|TIPODEDATO IDENTIFICADOR BracketOP ENTEROPOSITIVO BracketCL FinCommand{fprintf(archSal1,"%s,%s,",yytext,yytext);}
 	;			
   
 declaracionFuncion:
-	TIPODEDATO IDENTIFICADOR ParetOP parametroFuncion ParetCL FinCommand
+	TIPODEDATO IDENTIFICADOR ParetOP parametroFuncion ParetCL FinCommand{fprintf(archSal1,"%s,%s,",yytext,yytext);}
 	|TIPODEDATO IDENTIFICADOR ParetOP ParetCL FinCommand
 	|VOID IDENTIFICADOR ParetOP parametroFuncion ParetCL FinCommand
 	|VOID IDENTIFICADOR ParetOP ParetCL FinCommand
-	;
-
-parametroFuncion:
-	TIPODEDATO IDENTIFICADOR
-	|TIPODEDATO IDENTIFICADOR COMA parametroFuncion
 	;
 
 definicionFuncion:
@@ -104,6 +85,13 @@ definicionFuncion:
 	|VOID IDENTIFICADOR ParetOP parametroFuncion ParetCL KEYOP bloque KEYCL  	
 	|VOID IDENTIFICADOR ParetOP ParetCL KEYOP bloque KEYCL			
 	;
+
+parametroFuncion:
+	TIPODEDATO IDENTIFICADOR				{fprintf(archSal1,"\n");}
+	|TIPODEDATO IDENTIFICADOR COMA parametroFuncion
+	;
+
+
 
 bloque:
 	llamadaIf			
@@ -152,18 +140,18 @@ condicion:
 
 valor:		
 	enteros		
-	|FLOTANTE {fprintf(archSal1,"%s \n",yytext );}	
-	|CARACTER {fprintf(archSal1,"%s \n",yytext );}	
-	|CADENA	{fprintf(archSal1,"%s \n",yytext );}	
+	|FLOTANTE {fprintf(archSal1,"%s \n",yytext);}	
+	|CARACTER {fprintf(archSal1,"%s \n",yytext);}	
+	|CADENA	{fprintf(archSal1,"%s \n",yytext);}	
 	;
 
 usoVariable:
-	IDENTIFICADOR IGUAL usoAux2		
+	IDENTIFICADOR IGUAL usoAux2 	{fprintf(archSal1,"%s \n",yytext);}	
 	;
 
 enteros:
-	ENTEROPOSITIVO	{fprintf(archSal1,"%s \n",yytext); }	
-	|ENTERONEGATIVO	{fprintf(archSal1,"%s \n",yytext); }	
+	ENTEROPOSITIVO	{fprintf(archSal1,"%s, ",yytext); }	
+	|ENTERONEGATIVO	{fprintf(archSal1,"%s, ",yytext); }	
 	;
 operacion:
 	MASMENOS		
@@ -171,8 +159,8 @@ operacion:
 	
 	;
 usoAux1:
-	IDENTIFICADOR		
-	|valor			
+	IDENTIFICADOR 	{fprintf(archSal1,"%s \n",yytext); }
+	|valor		
 	;
 usoAux2:
 	usoAux1 FinCommand		
@@ -182,7 +170,7 @@ usoAux2:
 
 %%
 	void yyerror(char *s) { 
-   		fprintf(stderr, "Linea: %d, %s",linea+1,s); 
+   		fprintf(stderr, "Error en la Linea: %d\n",linea+1); 
 	} 
 	void main(void) { 
 		yyin=fopen("entrada.txt","r");
