@@ -1,4 +1,3 @@
-
 %{
 	#include <stdlib.h> 
 	void yyerror(char *);
@@ -31,14 +30,14 @@ tdd		"char"|"int"|"double"|"boolean"|"string"|"String"|"float"
 "for"      			return FOR;
 "else"     			return ELSE;
 "return"  			return RETURN;
-{tdd}				{fprintf(archSal1,"\n%s,",yytext); return TIPODEDATO;}
-"void"    			{fprintf(archSal1,"\n%s,",yytext );return VOID;}
+{tdd}				{fprintf(archSal1,"%s,",yytext); return TIPODEDATO;}
+"void"    			{fprintf(archSal1,"%s,",yytext );return VOID;}
 "then"    			return THEN;
 "while"   			return WHILE;
 "do"      			return DO;
 "input"   			return INPUT;
 "output"  			return OUTPUT;
-{iden} 				{fprintf(archSal1,"%s,",yytext );return IDENTIFICADOR;}
+{iden} 				{fprintf(archSal1,"%s,\n",yytext );return IDENTIFICADOR;}
 "="				return IGUAL;
 {digito}+|"+"{digito}+	 	return ENTEROPOSITIVO;
 "-"{digito}+			return ENTERONEGATIVO;
@@ -65,4 +64,4 @@ tdd		"char"|"int"|"double"|"boolean"|"string"|"String"|"float"
 
 	int yywrap(void){
 		return 1;
-	}
+}
