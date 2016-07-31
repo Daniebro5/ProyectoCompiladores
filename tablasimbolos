@@ -1,0 +1,24 @@
+TABLA DE SÍMBOLOS
+17 entries
+
++-------+---------+------------------------------+
+|   -   |  TIPO   |        TOKEN = VALOR         |
++-------+---------+------------------------------+
+| 1     | ENTERO  |  a = 1
+| 2     |FLOTANTE |  bla = 9.500000
+| 3     | ENTERO  |  n = 22
+| 4     |FLOTANTE |  id = 1124.599976
+| 5     | ENTERO  |  d = 0
+| 6     | ENTERO  |  prueba_id = 40
+| 7     | PALABRA |  float
+| 8     | PALABRA |  int
+| 9     | PALABRA |  return
+| 10    | PALABRA |  print
+| 11    | PALABRA |  break
+| 12    | PALABRA |  for
+| 13    | PALABRA |  while
+| 14    | PALABRA |  do
+| 15    | PALABRA |  else
+| 16    | PALABRA |  if
+| 17    | PALABRA |  main
++-------+---------+------------------------------+

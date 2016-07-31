@@ -8,7 +8,7 @@ void hanoi(int n,int com, int aux, int fin);
 
  
 
-void main(vid){
+void main(void){
 
  
 
@@ -20,7 +20,19 @@ void main(vid){
 
 	char fin='C';
 
+	int n;
+
+ 
+
+	printf("\nN£mero de discos: ");
+
+	scanf("%d",&n);
+
 	fflush(stdin);
+
+ 
+
+	printf("\n\nLos movimientos a realizar son: \n");
 
 	hanoi(n,com,aux,fin);
 
@@ -34,15 +46,17 @@ void hanoi(int n,int com, int aux, int fin){
 
 	if(n==1){
 
-		int x= 2;
+		printf("%c->%c",com,fin);
 
 	}
 
 	else{
 
-		hanoi(n,com,fin,aux);
+		hanoi(n-1,com,fin,aux);
 
-		hanoi(n,aux,com,fin);
+		printf("\n%c->%c\n",com,fin);
+
+		hanoi(n-1,aux,com,fin);
 
 	}
 
