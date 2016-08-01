@@ -47,8 +47,8 @@
 }
 
 %type<lexeme> ID
-%type<integer> INTEGER i_expr i_term i_factor l_expr l_factor
-%type<real> REAL r_expr r_term r_factor
+%type<integer> INTEGER l_expr l_factor
+%type<real> REAL g_expr g_term g_factor 
 
 %left '+' '-'
 %left '*' '/'
@@ -156,7 +156,7 @@ attrib_list: attrib ',' attrib_list
            ;
 
 attrib: i_attrib
-| r_attrib
+
 | ID MATH_INC {
 	if(get_entry($1)) {
 		set_value($1, get_value($1)+1);
@@ -203,12 +203,16 @@ attrib: i_attrib
 }
 | error { yyerror("formato de atribucion invalido", ERROR); };
 
-i_attrib: ID '=' i_expr {
+i_attrib: ID '=' g_expr {
 	if(get_entry($1)) {
 		// if they have the same type
 		if(get_type($1) == INT_TYPE) {
 			// does the attribution
-			set_value($1, $3);
+			set_value($1,(int) $3);
+		}
+		else if(get_type($1) == FLOAT_TYPE) {
+			// does the attribution
+			set_value($1,(float) $3);
 		}
 		else {
 			yyerror("tipos de datos incompatibles", WARNING);
@@ -219,7 +223,7 @@ i_attrib: ID '=' i_expr {
 		yyerror(str, ERROR);
 	}
 };
-
+/*
 r_attrib: ID '=' r_expr {
 	if(get_entry($1)) {
 		// if they have the same type
@@ -235,7 +239,7 @@ r_attrib: ID '=' r_expr {
 		char *str = (char *)strbuild(1, "declaracion de '%s' no encontrada", $1);
 		yyerror(str, ERROR);
 	}
-};
+};*/
 
 
  /*******************************************
@@ -264,33 +268,34 @@ l_factor: '(' l_expr ')' { $$ = $2; }
 	}
 };
 
-i_expr: i_expr '+' i_term { $$ = $1 + $3; }
-      | i_expr '-' i_term { $$ = $1 - $3; } 
-      | i_term { $$ = $1; }
+g_expr: g_expr '+' g_term { $$ = $1 + $3; }
+      | g_expr '-' g_term { $$ = $1 - $3; } 
+      | g_term { $$ = $1; }
       ;
 
-r_expr: r_expr '+' r_term { $$ = $1 + $3; } 
-      | r_expr '-' r_term { $$ = $1 - $3; } 
-      | r_term { $$ = $1; }
+//r_expr: r_expr '+' r_term { $$ = $1 + $3; } 
+  //    | r_expr '-' r_term { $$ = $1 - $3; } 
+    //  | r_term { $$ = $1; }
+      //;
+
+g_term: g_term '*' g_factor { $$ = $1 * $3; } 
+      | g_term '/' g_factor { $$ = $1 / $3; } 
+      | g_factor { $$ = $1; }
       ;
 
-i_term: i_term '*' i_factor { $$ = $1 * $3; } 
-      | i_term '/' i_factor { $$ = $1 / $3; } 
-      | i_factor { $$ = $1; }
-      ;
+//r_term: r_term '*' r_factor { $$ = $1 * $3; } 
+  //    | r_term '/' r_factor { $$ = $1 / $3; } 
+    //  | r_factor { $$ = $1; }
+      //;
 
-r_term: r_term '*' r_factor { $$ = $1 * $3; } 
-      | r_term '/' r_factor { $$ = $1 / $3; } 
-      | r_factor { $$ = $1; }
-      ;
-
-i_factor: '(' i_expr ')' { $$ = $2; }
+g_factor: '(' g_expr ')' { $$ = $2; }
         | INTEGER { $$ = $1; }
+	| REAL { $$ = $1; }
         ;
 
-r_factor: '(' r_expr ')' { $$ = $2; }
-        | REAL { $$ = $1; }
-        ;
+//r_factor: '(' r_expr ')' { $$ = $2; }
+  //      | REAL { $$ = $1; }
+    //    ;
 
 %%
 
