@@ -1,63 +1,12 @@
-#include <stdio.h>
+#include<dsad.h>
 
-#include <conio.h>
+int a=12;
+float s = 5.7;
 
- 
+String de ="da";
+int hanoi();
+void main(){
 
-void hanoi(int n,int com, int aux, int fin);
-
- 
-
-void main(void){
-
- 
-
-        clrscr();
-
-	char com='A';
-
-	char aux='B';
-
-	char fin='C';
-
-	int n;
-
- 
-
-	printf("\nN£mero de discos: ");
-
-	scanf("%d",&n);
-
-	fflush(stdin);
-
- 
-
-	printf("\n\nLos movimientos a realizar son: \n");
-
-	hanoi(n,com,aux,fin);
-
-}
-
- 
-
-void hanoi(int n,int com, int aux, int fin){
-
- 
-
-	if(n==1){
-
-		printf("%c->%c",com,fin);
-
-	}
-
-	else{
-
-		hanoi(n-1,com,fin,aux);
-
-		printf("\n%c->%c\n",com,fin);
-
-		hanoi(n-1,aux,com,fin);
-
-	}
+n=m+n;
 
 }

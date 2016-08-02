@@ -4,33 +4,34 @@
     int yylex(void); 
     void yyerror(char *);
 extern FILE *yyin;
+extern int linea;
+extern char *yytext;
  FILE *archSal;
+   FILE *archSal1;
+
 %}
 
 %token INCLUDE
 %token IGUAL
 %token LIBRERIA
+%left <tipo>TIPODEDATO
 %token IF
 %token FOR
 %token ELSE
 %token RETURN
-%token TIPODEDATOBOOL
-%token TIPODEDATOSTRING
-%token TIPODEDATOENTERO
-%token TIPODEDATOVOID
-%token TIPODEDATOFLOTANTE
-%token TIPODEDATOCHAR
+%left <voi>VOID
 %token THEN
 %token WHILE
 %token DO
 %token INPUT
 %token OUTPUT
-%token ENTERO
+%token ENTEROPOSITIVO
+%token ENTERONEGATIVO
 %token FLOTANTE
 %token BOOLEANO
 %token CARRESP
 %token COMPAR
-%token IDENTIFICADOR
+%token <identificador>IDENTIFICADOR
 %token CARACTER 
 %token CADENA
 %token MASMENOS
@@ -38,114 +39,151 @@ extern FILE *yyin;
 %token COMA
 %token KEYOP
 %token KEYCL
-
 %token ParetOP
 %token ParetCL
-
 %token BracketOP
 %token BracketCL
 %token FinCommand
-
 %start programa
+%union{
+char* tipo;
+char* identificador;
+char* voi;
+}
 %%
 
 programa:
-		declaracionG 
-		|main		{fprintf(archSal,"DeclaracionMain \n");}
-		|funcion  		
-		|declaracionG programa	
-		|funcion programa
-		|main programa
-		|stament
-		|stament programa
-	
-		
-				;
+	declaracionG			
+	|definicionFuncion	{fprintf(archSal,"DefinicionFuncion\n"); }		
+	|declaracionG programa		
+	|definicionFuncion programa	{fprintf(archSal,"DefinicionFuncion\n");  }
 
-//declaracionG: TIPODEDATOENTERO IDENTIFICADOR IGUAL IDENTIFICADOR FinCommand	{fprintf(archSal,"declaracionEntero");};
+	;
 
-//libreria: INCLUDE LIBRERIA FinCommand ;  
-stament:	IDENTIFICADOR IGUAL dato FinCommand
-		| IDENTIFICADOR IGUAL dato MASMENOS dato FinCommand;
 
-  																																																																	
-funcion:
-		IDENTIFICADOR ParetOP declaracionParametro ParetCL FinCommand {fprintf(archSal,"LlamadaFuncion \n");}
-		|tipoDeDato IDENTIFICADOR ParetOP declaracionParametro ParetCL KEYOP programa KEYCL {fprintf(archSal,"DeclaracionFuncion \n");}
-		|tipoDeDato IDENTIFICADOR ParetOP declaracionParametro ParetCL KEYOP  KEYCL {fprintf(archSal,"DeclaracionFuncion \n");}
-		|IDENTIFICADOR ParetOP  ParetCL FinCommand {fprintf(archSal,"LlamadaFuncion \n");}
-		
-		|tipoDeDato IDENTIFICADOR ParetOP ParetCL KEYOP programa KEYCL {fprintf(archSal,"DeclaracionFuncion \n");}
-		|tipoDeDato IDENTIFICADOR ParetOP ParetCL KEYOP  KEYCL {fprintf(archSal,"DeclaracionFuncion \n");}		
-;
+
 declaracionG:
-		declaracionLibreria {fprintf(archSal,"DeclaraciondeLibreria \n");}
-		|declaracionFuncion 
-		|declaracionVariable 
-		|lazos
-		;
-lazos:		IF ParetOP condicion ParetCL KEYOP programa KEYCL{fprintf(archSal,"IF \n");}
-		|ELSE ParetOP condicion ParetCL KEYOP programa KEYCL {fprintf(archSal,"ELSE \n");}
-		|ELSE KEYOP programa KEYCL		{fprintf(archSal,"ELSE \n");}
-		
-
-
-;
-condicion:      BOOLEANO
-		|IDENTIFICADOR
-		|IDENTIFICADOR COMPAR dato;
+	declaracionLibreria	{fprintf(archSal,"DeclaracionLibreria\n");}
+	|declaracionVariable	{fprintf(archSal,"DeclaracionVariable1\n");}
+	|declaracionFuncion	{fprintf(archSal,"DeclaracionFuncion\n");}	
+	;
 
 declaracionLibreria:
-		INCLUDE LIBRERIA 				
-		;
+	INCLUDE LIBRERIA	
+	;
 
-dato:		ENTERO
-		|FLOTANTE
-		|CARACTER
-		|CADENA
-;
-declaracionVariable:
-		TIPODEDATOBOOL IDENTIFICADOR IGUAL BOOLEANO FinCommand {fprintf(archSal,"DeclaracionBooleano\n");}	
-		|TIPODEDATOSTRING IDENTIFICADOR IGUAL CADENA FinCommand	{fprintf(archSal,"DeclaracionesCadena\n");}
-		|TIPODEDATOENTERO IDENTIFICADOR IGUAL ENTERO FinCommand	{fprintf(archSal,"DeclaracionesEntero\n");}
-		|TIPODEDATOFLOTANTE IDENTIFICADOR IGUAL FLOTANTE FinCommand	{fprintf(archSal,"DeclaracionesFlotante\n");}
-		|TIPODEDATOCHAR IDENTIFICADOR IGUAL CARACTER FinCommand	{fprintf(archSal,"DeclaracionesCaracter\n");}
-		|tipoDeDato IDENTIFICADOR IGUAL IDENTIFICADOR FinCommand	{fprintf(archSal,"Declaracion\n");}
-		|tipoDeDato IDENTIFICADOR FinCommand {fprintf(archSal,"Declaracion\n");}
-		;
+
+declaracionVariable:		
+	TIPODEDATO IDENTIFICADOR IGUAL valor FinCommand	 		{fprintf(archSal1,"%s,%s \n",$1,$2);}
+	|TIPODEDATO IDENTIFICADOR IGUAL IDENTIFICADOR FinCommand 		{fprintf(archSal1,"%s,%s \n",$1,$2);}
+	|TIPODEDATO IDENTIFICADOR FinCommand 					{fprintf(archSal1,"%s,%s \n",$1,$2);}
+	|TIPODEDATO IDENTIFICADOR BracketOP ENTEROPOSITIVO BracketCL FinCommand {fprintf(archSal1,"%s,%s \n",$1,$2);}
+	;			
+  
 declaracionFuncion:
-		tipoDeDato IDENTIFICADOR ParetOP declaracionParametro ParetCL FinCommand {fprintf(archSal,"DeclaracionFuncion \n");}
-		|tipoDeDato IDENTIFICADOR ParetOP ParetCL FinCommand	{fprintf(archSal,"DeclaracionFuncion \n");}
-		
-		
-		;
-declaracionParametro:
-		tipoDeDato IDENTIFICADOR  
-		|IDENTIFICADOR
-		|tipoDeDato IDENTIFICADOR  COMA declaracionParametro
-		|IDENTIFICADOR COMA declaracionParametro
-		;
-tipoDeDato:
-		TIPODEDATOBOOL
-		|TIPODEDATOSTRING
-		|TIPODEDATOENTERO
-		|TIPODEDATOFLOTANTE
-		|TIPODEDATOCHAR
-		|TIPODEDATOVOID
-		;
+	TIPODEDATO IDENTIFICADOR ParetOP parametroFuncion ParetCL FinCommand {fprintf(archSal1,"%s,%s \n",$1,$2);}
+	|TIPODEDATO IDENTIFICADOR ParetOP ParetCL FinCommand	{fprintf(archSal1,"%s,%s \n",$1,$2);}
+	|VOID IDENTIFICADOR ParetOP parametroFuncion ParetCL FinCommand {fprintf(archSal1,"%s,%s \n",$1,$2);}
+	|VOID IDENTIFICADOR ParetOP ParetCL FinCommand  {fprintf(archSal1,"%s,%s \n",$1,$2);}
+	;
 
-main:
-		tipoDeDato "main" ParetOP declaracionParametro ParetCL "{" programa "}"
-		;
+definicionFuncion:
+	TIPODEDATO IDENTIFICADOR ParetOP parametroFuncion ParetCL KEYOP bloque KEYCL 
+	|TIPODEDATO IDENTIFICADOR ParetOP ParetCL KEYOP bloque KEYCL			
+	|VOID IDENTIFICADOR ParetOP parametroFuncion ParetCL KEYOP bloque KEYCL  	
+	|VOID IDENTIFICADOR ParetOP ParetCL KEYOP bloque KEYCL			
+	;
+
+parametroFuncion:
+	TIPODEDATO IDENTIFICADOR				//{fprintf(archSal1,"\n");}
+	|TIPODEDATO IDENTIFICADOR COMA parametroFuncion
+	;
+
+
+
+bloque:
+	llamadaIf			
+	|llamadaWhile			
+	|llamadaDoWhile			
+	|llamadaFuncion			
+	|declaracionVariable 		{fprintf(archSal,"DeclaracionVariable2\n");}	
+	|usoVariable		{fprintf(archSal,"DeclaracionVariable3\n");}		
+	|llamadaIf bloque			
+	|llamadaWhile bloque			
+	|llamadaDoWhile	bloque		
+	|llamadaFuncion	bloque		
+	|declaracionVariable bloque	{fprintf(archSal,"DeclaracionVariable2\n");}		
+	|usoVariable bloque			
+	;
+
+llamadaIf:
+	IF ParetOP condicion ParetCL KEYOP bloque KEYCL			{fprintf(archSal,"DeclaracionIF\n");}	
+	|IF ParetOP condicion ParetCL KEYOP bloque KEYCL ELSE KEYOP bloque KEYCL {fprintf(archSal,"DeclaracionIF\n");}		
+	;
+
+llamadaWhile:
+	WHILE ParetOP condicion ParetCL KEYOP bloque KEYCL	{fprintf(archSal,"DeclaracionWHILE\n");}				
+	;
+
+llamadaDoWhile:
+	DO KEYOP bloque KEYCL WHILE ParetOP condicion ParetCL FinCommand	{fprintf(archSal,"DeclaracionDoWhile\n");}		
+	;
+llamadaFuncion:
+	IDENTIFICADOR ParetOP parametroLlamada ParetCL FinCommand	{fprintf(archSal,"LlamadaFuncion\n");}	
+	|IDENTIFICADOR ParetOP ParetCL FinCommand			{fprintf(archSal,"LlamadaFuncion\n");}	
+	;
+
+parametroLlamada:
+	usoAux1					
+	|usoAux1 COMA parametroLlamada		
+	;
+
+condicion:      
+	BOOLEANO				
+	|usoAux1 COMPAR usoAux1			
+	|llamadaFuncion				
+	|llamadaFuncion COMPAR usoAux1		
+	|llamadaFuncion COMPAR llamadaFuncion	
+	;
+
+valor:		
+	enteros		
+	|FLOTANTE 	
+	|CARACTER 
+	|CADENA		
+	;
+
+usoVariable:
+	IDENTIFICADOR IGUAL usoAux2 	//{fprintf(archSal1,"%s \n",yytext);}	
+	;
+
+enteros:
+	ENTEROPOSITIVO	
+	|ENTERONEGATIVO	
+	;
+operacion:
+	MASMENOS		
+	|DIMULTI
+	
+	;
+usoAux1:
+	IDENTIFICADOR 
+	|valor		
+	;
+usoAux2:
+	usoAux1 FinCommand		
+	|usoAux1 operacion usoAux2	
+	;
 
 
 %%
-void yyerror(char *s) { 
-   fprintf(stderr, "%s\n", s); 
-} 
-void main(void) { 
-	yyin=fopen("entrada.txt","r");
-	archSal=fopen("salidaSintactica.txt","w");
-    	yyparse();  
-	fclose(archSal);
-} 
+	void yyerror(char *s) { 
+   		fprintf(stderr, "Error en la Linea: %d\n",linea+1); 
+	} 
+	void main(void) { 
+		yyin=fopen("entrada.txt","r");
+		archSal=fopen("salidaSintactica.txt","w");
+		archSal1=fopen("tabladeSimbolos.csv","w");
+	    	yyparse();  
+		fclose(archSal);
+	} 

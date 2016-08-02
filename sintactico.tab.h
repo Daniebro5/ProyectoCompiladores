@@ -48,45 +48,54 @@ extern int yydebug;
     INCLUDE = 258,
     IGUAL = 259,
     LIBRERIA = 260,
-    IF = 261,
-    FOR = 262,
-    ELSE = 263,
-    RETURN = 264,
-    TIPODEDATOBOOL = 265,
-    TIPODEDATOSTRING = 266,
-    TIPODEDATOENTERO = 267,
-    TIPODEDATOVOID = 268,
-    TIPODEDATOFLOTANTE = 269,
-    TIPODEDATOCHAR = 270,
-    THEN = 271,
-    WHILE = 272,
-    DO = 273,
-    INPUT = 274,
-    OUTPUT = 275,
-    ENTERO = 276,
-    FLOTANTE = 277,
-    BOOLEANO = 278,
-    CARRESP = 279,
-    COMPAR = 280,
-    IDENTIFICADOR = 281,
-    CARACTER = 282,
-    CADENA = 283,
-    MASMENOS = 284,
-    DIMULTI = 285,
-    COMA = 286,
-    KEYOP = 287,
-    KEYCL = 288,
-    ParetOP = 289,
-    ParetCL = 290,
-    BracketOP = 291,
-    BracketCL = 292,
-    FinCommand = 293
+    TIPODEDATO = 261,
+    IF = 262,
+    FOR = 263,
+    ELSE = 264,
+    RETURN = 265,
+    VOID = 266,
+    THEN = 267,
+    WHILE = 268,
+    DO = 269,
+    INPUT = 270,
+    OUTPUT = 271,
+    ENTEROPOSITIVO = 272,
+    ENTERONEGATIVO = 273,
+    FLOTANTE = 274,
+    BOOLEANO = 275,
+    CARRESP = 276,
+    COMPAR = 277,
+    IDENTIFICADOR = 278,
+    CARACTER = 279,
+    CADENA = 280,
+    MASMENOS = 281,
+    DIMULTI = 282,
+    COMA = 283,
+    KEYOP = 284,
+    KEYCL = 285,
+    ParetOP = 286,
+    ParetCL = 287,
+    BracketOP = 288,
+    BracketCL = 289,
+    FinCommand = 290
   };
 #endif
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-typedef int YYSTYPE;
+
+union YYSTYPE
+{
+#line 48 "sintactico.y" /* yacc.c:1909  */
+
+char* tipo;
+char* identificador;
+char* voi;
+
+#line 96 "sintactico.tab.h" /* yacc.c:1909  */
+};
+
+typedef union YYSTYPE YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1
 #endif
