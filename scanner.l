@@ -12,6 +12,7 @@
 digit 		[0-9]
 num		{digit}+
 real		{digit}+\.{digit}+
+bool		"true"
 
  /* Letters and identifiers */
 letter 		[a-zA-Z]
@@ -71,9 +72,13 @@ float {
 	return (FLOAT_TYPE);
 }
 
+boolean {
+	chars += yyleng;
+	return (BOOL_TYPE);
+}
 
  /*	INVALID	*/
-({num}|{real}){id} {
+({num}|{real}|{bool}){id} {
 	printf("( %3d : %-3d ) id inválido: %s\n", lines, chars, yytext);
 	chars += yyleng;
 	errors++;
@@ -86,13 +91,17 @@ float {
 	chars += yyleng;
 	return (INTEGER);
 }
-
 {real} {
 	yylval.real = (float)atof(yytext);
 	chars += yyleng;
 	return (REAL);
 }
 
+{bool} {
+	yylval.lexeme =  (char *)strdup(yytext);
+	chars += yyleng;
+	return (BOOLEAN);
+}
 
  /*	IDENTIFIER	*/
 {id} {

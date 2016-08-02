@@ -34,8 +34,8 @@
 %start program
 %token MAIN
 %token IF ELSE DO WHILE FOR BREAK PRINT RETURN
-%token INT_TYPE FLOAT_TYPE
-%token STRING INTEGER REAL
+%token INT_TYPE FLOAT_TYPE BOOL_TYPE
+%token STRING INTEGER REAL BOOLEAN
 %token ID
 %token MATH_INC MATH_DEC
 %token LOG_EQL LOG_LT LOG_GT LOG_AND LOG_OR LOG_NOT
@@ -44,11 +44,13 @@
 	char *lexeme;
 	int integer;
 	float real;
+	
 }
 
 %type<lexeme> ID
-%type<integer> INTEGER l_expr l_factor
+%type<integer> INTEGER l_expr l_factor 
 %type<real> REAL g_expr g_term g_factor 
+%type<bool> BOOLEAN
 
 %left '+' '-'
 %left '*' '/'
@@ -145,6 +147,10 @@ declaration: INT_TYPE ID {
 | FLOAT_TYPE ID {
 	install_id($2, FLOAT_TYPE);
 }
+| BOOL_TYPE ID {
+	install_id($2, BOOL_TYPE);
+}
+
 ;
 
 
@@ -214,6 +220,20 @@ i_attrib: ID '=' g_expr {
 			// does the attribution
 			set_value($1,(float) $3);
 		}
+		
+		else if(get_type($1) == BOOL_TYPE) {
+			// does the attribution
+			if($3>0&&$3<1){
+
+			set_value($1,0);}
+			else if($3>1&&$3<2)
+				{set_value($1,1);}
+else {
+			yyerror("tipos de datos incompatibles", WARNING);
+		}
+
+			}
+		
 		else {
 			yyerror("tipos de datos incompatibles", WARNING);
 		}
@@ -302,7 +322,7 @@ g_factor: '(' g_expr ')' { $$ = $2; }
 int main( int argc, char **argv )
 {
 	char* keywords[] = {"main", "if", "else", "do", "while", "for", "break", "print",
-						"return", "int", "float"};
+						"return", "int", "float","bool"};
 
 	// Checks if there are more files to be read 
 	++argv, --argc;
@@ -386,6 +406,9 @@ void print_table(table_t table) {
 		} 
 		else if(cur->type == FLOAT_TYPE) {
 			fprintf(f, "| %-5d |FLOTANTE |  %s = %f\n", i, cur->lexeme, (float) cur->value);
+		} 
+		else if(cur->type == BOOL_TYPE) {
+			fprintf(f, "| %-5d |BOOLEANO |  %s = %f\n", i, cur->lexeme,  cur->value);
 		} 
 		else if(cur->type == KEY_TYPE) {
 			fprintf(f, "| %-5d | PALABRA |  %s\n", i, cur->lexeme);

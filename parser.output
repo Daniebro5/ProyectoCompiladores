@@ -1,3 +1,8 @@
+Terminales no usados en la gramática
+
+   BOOLEAN
+
+
 Gramática
 
     0 $accept: program $end
@@ -50,59 +55,60 @@ Gramática
 
    33 declaration: INT_TYPE ID
    34            | FLOAT_TYPE ID
+   35            | BOOL_TYPE ID
 
-   35 attrib_list: attrib ',' attrib_list
-   36            | attrib
+   36 attrib_list: attrib ',' attrib_list
+   37            | attrib
 
-   37 attrib: i_attrib
-   38       | ID MATH_INC
-   39       | ID MATH_DEC
-   40       | ID '=' ID
-   41       | error
+   38 attrib: i_attrib
+   39       | ID MATH_INC
+   40       | ID MATH_DEC
+   41       | ID '=' ID
+   42       | error
 
-   42 i_attrib: ID '=' g_expr
+   43 i_attrib: ID '=' g_expr
 
-   43 l_expr: l_expr LOG_EQL l_factor
-   44       | l_expr LOG_AND l_factor
-   45       | l_expr LOG_OR l_factor
-   46       | l_expr LOG_GT l_factor
-   47       | l_expr LOG_LT l_factor
-   48       | LOG_NOT l_expr
-   49       | l_factor
+   44 l_expr: l_expr LOG_EQL l_factor
+   45       | l_expr LOG_AND l_factor
+   46       | l_expr LOG_OR l_factor
+   47       | l_expr LOG_GT l_factor
+   48       | l_expr LOG_LT l_factor
+   49       | LOG_NOT l_expr
+   50       | l_factor
 
-   50 l_factor: '(' l_expr ')'
-   51         | INTEGER
-   52         | REAL
-   53         | ID
+   51 l_factor: '(' l_expr ')'
+   52         | INTEGER
+   53         | REAL
+   54         | ID
 
-   54 g_expr: g_expr '+' g_term
-   55       | g_expr '-' g_term
-   56       | g_term
+   55 g_expr: g_expr '+' g_term
+   56       | g_expr '-' g_term
+   57       | g_term
 
-   57 g_term: g_term '*' g_factor
-   58       | g_term '/' g_factor
-   59       | g_factor
+   58 g_term: g_term '*' g_factor
+   59       | g_term '/' g_factor
+   60       | g_factor
 
-   60 g_factor: '(' g_expr ')'
-   61         | INTEGER
-   62         | REAL
+   61 g_factor: '(' g_expr ')'
+   62         | INTEGER
+   63         | REAL
 
 
 Terminales con las reglas donde aparecen
 
 $end (0) 0
-'(' (40) 1 4 22 25 31 32 50 60
-')' (41) 1 4 22 25 31 32 50 60
-'*' (42) 57
-'+' (43) 54
-',' (44) 29 35
-'-' (45) 55
-'/' (47) 58
+'(' (40) 1 4 22 25 31 32 51 61
+')' (41) 1 4 22 25 31 32 51 61
+'*' (42) 58
+'+' (43) 55
+',' (44) 29 36
+'-' (45) 56
+'/' (47) 59
 ';' (59) 10 25 32
-'=' (61) 40 42
+'=' (61) 41 43
 '{' (123) 1 4 7 22 24 25 31 32
 '}' (125) 1 4 7 22 24 25 31 32
-error (256) 2 5 12 41
+error (256) 2 5 12 42
 MAIN (258) 1
 IF (259) 22
 ELSE (260) 24
@@ -114,71 +120,73 @@ PRINT (265) 17
 RETURN (266) 19
 INT_TYPE (267) 33
 FLOAT_TYPE (268) 34
-STRING (269) 17
-INTEGER (270) 51 61
-REAL (271) 52 62
-ID (272) 4 33 34 38 39 40 42 53
-MATH_INC (273) 38
-MATH_DEC (274) 39
-LOG_EQL (275) 43
-LOG_LT (276) 47
-LOG_GT (277) 46
-LOG_AND (278) 44
-LOG_OR (279) 45
-LOG_NOT (280) 48
+BOOL_TYPE (269) 35
+STRING (270) 17
+INTEGER (271) 52 62
+REAL (272) 53 63
+BOOLEAN (273)
+ID (274) 4 33 34 35 39 40 41 43 54
+MATH_INC (275) 39
+MATH_DEC (276) 40
+LOG_EQL (277) 44
+LOG_LT (278) 48
+LOG_GT (279) 47
+LOG_AND (280) 45
+LOG_OR (281) 46
+LOG_NOT (282) 49
 
 
 No terminales con las reglas donde aparecen
 
-$accept (37)
+$accept (39)
     en la izquierda: 0
-program (38)
+program (40)
     en la izquierda: 1 2, en la derecha: 0
-program_end (39)
+program_end (41)
     en la izquierda: 3 4 5, en la derecha: 1 4
-commands (40)
+commands (42)
     en la izquierda: 6, en la derecha: 1 4 22 24 25 31 32
-command_list (41)
+command_list (43)
     en la izquierda: 7 8 9, en la derecha: 6 7 8
-command (42)
+command (44)
     en la izquierda: 10 11 12, en la derecha: 8
-stmt (43)
+stmt (45)
     en la izquierda: 13 14 15 16, en la derecha: 11
-cmd (44)
+cmd (46)
     en la izquierda: 17 18 19 20 21, en la derecha: 10 29 30
-if_stmt (45)
+if_stmt (47)
     en la izquierda: 22, en la derecha: 13
-else_stmt (46)
+else_stmt (48)
     en la izquierda: 23 24, en la derecha: 22
-for_stmt (47)
+for_stmt (49)
     en la izquierda: 25, en la derecha: 14
-ffirst (48)
+ffirst (50)
     en la izquierda: 26 27, en la derecha: 25
-fthird (49)
+fthird (51)
     en la izquierda: 28 29 30, en la derecha: 25 29
-while_stmt (50)
+while_stmt (52)
     en la izquierda: 31, en la derecha: 15
-dowhile_stmt (51)
+dowhile_stmt (53)
     en la izquierda: 32, en la derecha: 16
-declaration (52)
-    en la izquierda: 33 34, en la derecha: 21
-attrib_list (53)
-    en la izquierda: 35 36, en la derecha: 27 35
-attrib (54)
-    en la izquierda: 37 38 39 40 41, en la derecha: 20 35 36
-i_attrib (55)
-    en la izquierda: 42, en la derecha: 37
-l_expr (56)
-    en la izquierda: 43 44 45 46 47 48 49, en la derecha: 22 25 31
-    32 43 44 45 46 47 48 50
-l_factor (57)
-    en la izquierda: 50 51 52 53, en la derecha: 43 44 45 46 47 49
-g_expr (58)
-    en la izquierda: 54 55 56, en la derecha: 42 54 55 60
-g_term (59)
-    en la izquierda: 57 58 59, en la derecha: 54 55 56 57 58
-g_factor (60)
-    en la izquierda: 60 61 62, en la derecha: 57 58 59
+declaration (54)
+    en la izquierda: 33 34 35, en la derecha: 21
+attrib_list (55)
+    en la izquierda: 36 37, en la derecha: 27 36
+attrib (56)
+    en la izquierda: 38 39 40 41 42, en la derecha: 20 36 37
+i_attrib (57)
+    en la izquierda: 43, en la derecha: 38
+l_expr (58)
+    en la izquierda: 44 45 46 47 48 49 50, en la derecha: 22 25 31
+    32 44 45 46 47 48 49 51
+l_factor (59)
+    en la izquierda: 51 52 53 54, en la derecha: 44 45 46 47 48 50
+g_expr (60)
+    en la izquierda: 55 56 57, en la derecha: 43 55 56 61
+g_term (61)
+    en la izquierda: 58 59 60, en la derecha: 55 56 57 58 59
+g_factor (62)
+    en la izquierda: 61 62 63, en la derecha: 58 59 60
 
 
 Estado 0
@@ -247,31 +255,32 @@ Estado 7
     RETURN      desplazar e ir al estado 15
     INT_TYPE    desplazar e ir al estado 16
     FLOAT_TYPE  desplazar e ir al estado 17
-    ID          desplazar e ir al estado 18
-    '{'         desplazar e ir al estado 19
+    BOOL_TYPE   desplazar e ir al estado 18
+    ID          desplazar e ir al estado 19
+    '{'         desplazar e ir al estado 20
 
     '}'  reduce usando la regla 9 (command_list)
 
-    commands      ir al estado 20
-    command_list  ir al estado 21
-    command       ir al estado 22
-    stmt          ir al estado 23
-    cmd           ir al estado 24
-    if_stmt       ir al estado 25
-    for_stmt      ir al estado 26
-    while_stmt    ir al estado 27
-    dowhile_stmt  ir al estado 28
-    declaration   ir al estado 29
-    attrib        ir al estado 30
-    i_attrib      ir al estado 31
+    commands      ir al estado 21
+    command_list  ir al estado 22
+    command       ir al estado 23
+    stmt          ir al estado 24
+    cmd           ir al estado 25
+    if_stmt       ir al estado 26
+    for_stmt      ir al estado 27
+    while_stmt    ir al estado 28
+    dowhile_stmt  ir al estado 29
+    declaration   ir al estado 30
+    attrib        ir al estado 31
+    i_attrib      ir al estado 32
 
 
 Estado 8
 
    12 command: error .
-   41 attrib: error .
+   42 attrib: error .
 
-    ';'       reduce usando la regla 41 (attrib)
+    ';'       reduce usando la regla 42 (attrib)
     $default  reduce usando la regla 12 (command)
 
 
@@ -279,28 +288,28 @@ Estado 9
 
    22 if_stmt: IF . '(' l_expr ')' '{' commands '}' else_stmt
 
-    '('  desplazar e ir al estado 32
+    '('  desplazar e ir al estado 33
 
 
 Estado 10
 
    32 dowhile_stmt: DO . '{' commands '}' WHILE '(' l_expr ')' ';'
 
-    '{'  desplazar e ir al estado 33
+    '{'  desplazar e ir al estado 34
 
 
 Estado 11
 
    31 while_stmt: WHILE . '(' l_expr ')' '{' commands '}'
 
-    '('  desplazar e ir al estado 34
+    '('  desplazar e ir al estado 35
 
 
 Estado 12
 
    25 for_stmt: FOR . '(' ffirst ';' l_expr ';' fthird ')' '{' commands '}'
 
-    '('  desplazar e ir al estado 35
+    '('  desplazar e ir al estado 36
 
 
 Estado 13
@@ -314,7 +323,7 @@ Estado 14
 
    17 cmd: PRINT . STRING
 
-    STRING  desplazar e ir al estado 36
+    STRING  desplazar e ir al estado 37
 
 
 Estado 15
@@ -328,29 +337,36 @@ Estado 16
 
    33 declaration: INT_TYPE . ID
 
-    ID  desplazar e ir al estado 37
+    ID  desplazar e ir al estado 38
 
 
 Estado 17
 
    34 declaration: FLOAT_TYPE . ID
 
-    ID  desplazar e ir al estado 38
+    ID  desplazar e ir al estado 39
 
 
 Estado 18
 
-   38 attrib: ID . MATH_INC
-   39       | ID . MATH_DEC
-   40       | ID . '=' ID
-   42 i_attrib: ID . '=' g_expr
+   35 declaration: BOOL_TYPE . ID
 
-    MATH_INC  desplazar e ir al estado 39
-    MATH_DEC  desplazar e ir al estado 40
-    '='       desplazar e ir al estado 41
+    ID  desplazar e ir al estado 40
 
 
 Estado 19
+
+   39 attrib: ID . MATH_INC
+   40       | ID . MATH_DEC
+   41       | ID . '=' ID
+   43 i_attrib: ID . '=' g_expr
+
+    MATH_INC  desplazar e ir al estado 41
+    MATH_DEC  desplazar e ir al estado 42
+    '='       desplazar e ir al estado 43
+
+
+Estado 20
 
     7 command_list: '{' . command_list '}'
 
@@ -364,39 +380,40 @@ Estado 19
     RETURN      desplazar e ir al estado 15
     INT_TYPE    desplazar e ir al estado 16
     FLOAT_TYPE  desplazar e ir al estado 17
-    ID          desplazar e ir al estado 18
-    '{'         desplazar e ir al estado 19
+    BOOL_TYPE   desplazar e ir al estado 18
+    ID          desplazar e ir al estado 19
+    '{'         desplazar e ir al estado 20
 
     '}'  reduce usando la regla 9 (command_list)
 
-    command_list  ir al estado 42
-    command       ir al estado 22
-    stmt          ir al estado 23
-    cmd           ir al estado 24
-    if_stmt       ir al estado 25
-    for_stmt      ir al estado 26
-    while_stmt    ir al estado 27
-    dowhile_stmt  ir al estado 28
-    declaration   ir al estado 29
-    attrib        ir al estado 30
-    i_attrib      ir al estado 31
-
-
-Estado 20
-
-    1 program: MAIN '(' ')' '{' commands . '}' program_end
-
-    '}'  desplazar e ir al estado 43
+    command_list  ir al estado 44
+    command       ir al estado 23
+    stmt          ir al estado 24
+    cmd           ir al estado 25
+    if_stmt       ir al estado 26
+    for_stmt      ir al estado 27
+    while_stmt    ir al estado 28
+    dowhile_stmt  ir al estado 29
+    declaration   ir al estado 30
+    attrib        ir al estado 31
+    i_attrib      ir al estado 32
 
 
 Estado 21
+
+    1 program: MAIN '(' ')' '{' commands . '}' program_end
+
+    '}'  desplazar e ir al estado 45
+
+
+Estado 22
 
     6 commands: command_list .
 
     $default  reduce usando la regla 6 (commands)
 
 
-Estado 22
+Estado 23
 
     8 command_list: command . command_list
 
@@ -410,102 +427,103 @@ Estado 22
     RETURN      desplazar e ir al estado 15
     INT_TYPE    desplazar e ir al estado 16
     FLOAT_TYPE  desplazar e ir al estado 17
-    ID          desplazar e ir al estado 18
-    '{'         desplazar e ir al estado 19
+    BOOL_TYPE   desplazar e ir al estado 18
+    ID          desplazar e ir al estado 19
+    '{'         desplazar e ir al estado 20
 
     '}'  reduce usando la regla 9 (command_list)
 
-    command_list  ir al estado 44
-    command       ir al estado 22
-    stmt          ir al estado 23
-    cmd           ir al estado 24
-    if_stmt       ir al estado 25
-    for_stmt      ir al estado 26
-    while_stmt    ir al estado 27
-    dowhile_stmt  ir al estado 28
-    declaration   ir al estado 29
-    attrib        ir al estado 30
-    i_attrib      ir al estado 31
+    command_list  ir al estado 46
+    command       ir al estado 23
+    stmt          ir al estado 24
+    cmd           ir al estado 25
+    if_stmt       ir al estado 26
+    for_stmt      ir al estado 27
+    while_stmt    ir al estado 28
+    dowhile_stmt  ir al estado 29
+    declaration   ir al estado 30
+    attrib        ir al estado 31
+    i_attrib      ir al estado 32
 
 
-Estado 23
+Estado 24
 
    11 command: stmt .
 
     $default  reduce usando la regla 11 (command)
 
 
-Estado 24
+Estado 25
 
    10 command: cmd . ';'
 
-    ';'  desplazar e ir al estado 45
+    ';'  desplazar e ir al estado 47
 
 
-Estado 25
+Estado 26
 
    13 stmt: if_stmt .
 
     $default  reduce usando la regla 13 (stmt)
 
 
-Estado 26
+Estado 27
 
    14 stmt: for_stmt .
 
     $default  reduce usando la regla 14 (stmt)
 
 
-Estado 27
+Estado 28
 
    15 stmt: while_stmt .
 
     $default  reduce usando la regla 15 (stmt)
 
 
-Estado 28
+Estado 29
 
    16 stmt: dowhile_stmt .
 
     $default  reduce usando la regla 16 (stmt)
 
 
-Estado 29
+Estado 30
 
    21 cmd: declaration .
 
     $default  reduce usando la regla 21 (cmd)
 
 
-Estado 30
+Estado 31
 
    20 cmd: attrib .
 
     $default  reduce usando la regla 20 (cmd)
 
 
-Estado 31
-
-   37 attrib: i_attrib .
-
-    $default  reduce usando la regla 37 (attrib)
-
-
 Estado 32
 
-   22 if_stmt: IF '(' . l_expr ')' '{' commands '}' else_stmt
+   38 attrib: i_attrib .
 
-    INTEGER  desplazar e ir al estado 46
-    REAL     desplazar e ir al estado 47
-    ID       desplazar e ir al estado 48
-    LOG_NOT  desplazar e ir al estado 49
-    '('      desplazar e ir al estado 50
-
-    l_expr    ir al estado 51
-    l_factor  ir al estado 52
+    $default  reduce usando la regla 38 (attrib)
 
 
 Estado 33
+
+   22 if_stmt: IF '(' . l_expr ')' '{' commands '}' else_stmt
+
+    INTEGER  desplazar e ir al estado 48
+    REAL     desplazar e ir al estado 49
+    ID       desplazar e ir al estado 50
+    LOG_NOT  desplazar e ir al estado 51
+    '('      desplazar e ir al estado 52
+
+    l_expr    ir al estado 53
+    l_factor  ir al estado 54
+
+
+Estado 34
 
    32 dowhile_stmt: DO '{' . commands '}' WHILE '(' l_expr ')' ';'
 
@@ -519,601 +537,609 @@ Estado 33
     RETURN      desplazar e ir al estado 15
     INT_TYPE    desplazar e ir al estado 16
     FLOAT_TYPE  desplazar e ir al estado 17
-    ID          desplazar e ir al estado 18
-    '{'         desplazar e ir al estado 19
+    BOOL_TYPE   desplazar e ir al estado 18
+    ID          desplazar e ir al estado 19
+    '{'         desplazar e ir al estado 20
 
     '}'  reduce usando la regla 9 (command_list)
 
-    commands      ir al estado 53
-    command_list  ir al estado 21
-    command       ir al estado 22
-    stmt          ir al estado 23
-    cmd           ir al estado 24
-    if_stmt       ir al estado 25
-    for_stmt      ir al estado 26
-    while_stmt    ir al estado 27
-    dowhile_stmt  ir al estado 28
-    declaration   ir al estado 29
-    attrib        ir al estado 30
-    i_attrib      ir al estado 31
-
-
-Estado 34
-
-   31 while_stmt: WHILE '(' . l_expr ')' '{' commands '}'
-
-    INTEGER  desplazar e ir al estado 46
-    REAL     desplazar e ir al estado 47
-    ID       desplazar e ir al estado 48
-    LOG_NOT  desplazar e ir al estado 49
-    '('      desplazar e ir al estado 50
-
-    l_expr    ir al estado 54
-    l_factor  ir al estado 52
+    commands      ir al estado 55
+    command_list  ir al estado 22
+    command       ir al estado 23
+    stmt          ir al estado 24
+    cmd           ir al estado 25
+    if_stmt       ir al estado 26
+    for_stmt      ir al estado 27
+    while_stmt    ir al estado 28
+    dowhile_stmt  ir al estado 29
+    declaration   ir al estado 30
+    attrib        ir al estado 31
+    i_attrib      ir al estado 32
 
 
 Estado 35
 
-   25 for_stmt: FOR '(' . ffirst ';' l_expr ';' fthird ')' '{' commands '}'
+   31 while_stmt: WHILE '(' . l_expr ')' '{' commands '}'
 
-    error  desplazar e ir al estado 55
-    ID     desplazar e ir al estado 18
+    INTEGER  desplazar e ir al estado 48
+    REAL     desplazar e ir al estado 49
+    ID       desplazar e ir al estado 50
+    LOG_NOT  desplazar e ir al estado 51
+    '('      desplazar e ir al estado 52
 
-    ';'  reduce usando la regla 26 (ffirst)
-
-    ffirst       ir al estado 56
-    attrib_list  ir al estado 57
-    attrib       ir al estado 58
-    i_attrib     ir al estado 31
+    l_expr    ir al estado 56
+    l_factor  ir al estado 54
 
 
 Estado 36
+
+   25 for_stmt: FOR '(' . ffirst ';' l_expr ';' fthird ')' '{' commands '}'
+
+    error  desplazar e ir al estado 57
+    ID     desplazar e ir al estado 19
+
+    ';'  reduce usando la regla 26 (ffirst)
+
+    ffirst       ir al estado 58
+    attrib_list  ir al estado 59
+    attrib       ir al estado 60
+    i_attrib     ir al estado 32
+
+
+Estado 37
 
    17 cmd: PRINT STRING .
 
     $default  reduce usando la regla 17 (cmd)
 
 
-Estado 37
+Estado 38
 
    33 declaration: INT_TYPE ID .
 
     $default  reduce usando la regla 33 (declaration)
 
 
-Estado 38
+Estado 39
 
    34 declaration: FLOAT_TYPE ID .
 
     $default  reduce usando la regla 34 (declaration)
 
 
-Estado 39
-
-   38 attrib: ID MATH_INC .
-
-    $default  reduce usando la regla 38 (attrib)
-
-
 Estado 40
 
-   39 attrib: ID MATH_DEC .
+   35 declaration: BOOL_TYPE ID .
 
-    $default  reduce usando la regla 39 (attrib)
+    $default  reduce usando la regla 35 (declaration)
 
 
 Estado 41
 
-   40 attrib: ID '=' . ID
-   42 i_attrib: ID '=' . g_expr
+   39 attrib: ID MATH_INC .
 
-    INTEGER  desplazar e ir al estado 59
-    REAL     desplazar e ir al estado 60
-    ID       desplazar e ir al estado 61
-    '('      desplazar e ir al estado 62
-
-    g_expr    ir al estado 63
-    g_term    ir al estado 64
-    g_factor  ir al estado 65
+    $default  reduce usando la regla 39 (attrib)
 
 
 Estado 42
 
-    7 command_list: '{' command_list . '}'
+   40 attrib: ID MATH_DEC .
 
-    '}'  desplazar e ir al estado 66
+    $default  reduce usando la regla 40 (attrib)
 
 
 Estado 43
 
-    1 program: MAIN '(' ')' '{' commands '}' . program_end
+   41 attrib: ID '=' . ID
+   43 i_attrib: ID '=' . g_expr
 
-    error  desplazar e ir al estado 67
-    ID     desplazar e ir al estado 68
+    INTEGER  desplazar e ir al estado 61
+    REAL     desplazar e ir al estado 62
+    ID       desplazar e ir al estado 63
+    '('      desplazar e ir al estado 64
 
-    $end  reduce usando la regla 3 (program_end)
-
-    program_end  ir al estado 69
+    g_expr    ir al estado 65
+    g_term    ir al estado 66
+    g_factor  ir al estado 67
 
 
 Estado 44
+
+    7 command_list: '{' command_list . '}'
+
+    '}'  desplazar e ir al estado 68
+
+
+Estado 45
+
+    1 program: MAIN '(' ')' '{' commands '}' . program_end
+
+    error  desplazar e ir al estado 69
+    ID     desplazar e ir al estado 70
+
+    $end  reduce usando la regla 3 (program_end)
+
+    program_end  ir al estado 71
+
+
+Estado 46
 
     8 command_list: command command_list .
 
     $default  reduce usando la regla 8 (command_list)
 
 
-Estado 45
+Estado 47
 
    10 command: cmd ';' .
 
     $default  reduce usando la regla 10 (command)
 
 
-Estado 46
+Estado 48
 
-   51 l_factor: INTEGER .
-
-    $default  reduce usando la regla 51 (l_factor)
-
-
-Estado 47
-
-   52 l_factor: REAL .
+   52 l_factor: INTEGER .
 
     $default  reduce usando la regla 52 (l_factor)
 
 
-Estado 48
+Estado 49
 
-   53 l_factor: ID .
+   53 l_factor: REAL .
 
     $default  reduce usando la regla 53 (l_factor)
 
 
-Estado 49
-
-   48 l_expr: LOG_NOT . l_expr
-
-    INTEGER  desplazar e ir al estado 46
-    REAL     desplazar e ir al estado 47
-    ID       desplazar e ir al estado 48
-    LOG_NOT  desplazar e ir al estado 49
-    '('      desplazar e ir al estado 50
-
-    l_expr    ir al estado 70
-    l_factor  ir al estado 52
-
-
 Estado 50
 
-   50 l_factor: '(' . l_expr ')'
+   54 l_factor: ID .
 
-    INTEGER  desplazar e ir al estado 46
-    REAL     desplazar e ir al estado 47
-    ID       desplazar e ir al estado 48
-    LOG_NOT  desplazar e ir al estado 49
-    '('      desplazar e ir al estado 50
-
-    l_expr    ir al estado 71
-    l_factor  ir al estado 52
+    $default  reduce usando la regla 54 (l_factor)
 
 
 Estado 51
 
-   22 if_stmt: IF '(' l_expr . ')' '{' commands '}' else_stmt
-   43 l_expr: l_expr . LOG_EQL l_factor
-   44       | l_expr . LOG_AND l_factor
-   45       | l_expr . LOG_OR l_factor
-   46       | l_expr . LOG_GT l_factor
-   47       | l_expr . LOG_LT l_factor
+   49 l_expr: LOG_NOT . l_expr
 
-    LOG_EQL  desplazar e ir al estado 72
-    LOG_LT   desplazar e ir al estado 73
-    LOG_GT   desplazar e ir al estado 74
-    LOG_AND  desplazar e ir al estado 75
-    LOG_OR   desplazar e ir al estado 76
-    ')'      desplazar e ir al estado 77
+    INTEGER  desplazar e ir al estado 48
+    REAL     desplazar e ir al estado 49
+    ID       desplazar e ir al estado 50
+    LOG_NOT  desplazar e ir al estado 51
+    '('      desplazar e ir al estado 52
+
+    l_expr    ir al estado 72
+    l_factor  ir al estado 54
 
 
 Estado 52
 
-   49 l_expr: l_factor .
+   51 l_factor: '(' . l_expr ')'
 
-    $default  reduce usando la regla 49 (l_expr)
+    INTEGER  desplazar e ir al estado 48
+    REAL     desplazar e ir al estado 49
+    ID       desplazar e ir al estado 50
+    LOG_NOT  desplazar e ir al estado 51
+    '('      desplazar e ir al estado 52
+
+    l_expr    ir al estado 73
+    l_factor  ir al estado 54
 
 
 Estado 53
 
-   32 dowhile_stmt: DO '{' commands . '}' WHILE '(' l_expr ')' ';'
+   22 if_stmt: IF '(' l_expr . ')' '{' commands '}' else_stmt
+   44 l_expr: l_expr . LOG_EQL l_factor
+   45       | l_expr . LOG_AND l_factor
+   46       | l_expr . LOG_OR l_factor
+   47       | l_expr . LOG_GT l_factor
+   48       | l_expr . LOG_LT l_factor
 
-    '}'  desplazar e ir al estado 78
+    LOG_EQL  desplazar e ir al estado 74
+    LOG_LT   desplazar e ir al estado 75
+    LOG_GT   desplazar e ir al estado 76
+    LOG_AND  desplazar e ir al estado 77
+    LOG_OR   desplazar e ir al estado 78
+    ')'      desplazar e ir al estado 79
 
 
 Estado 54
 
-   31 while_stmt: WHILE '(' l_expr . ')' '{' commands '}'
-   43 l_expr: l_expr . LOG_EQL l_factor
-   44       | l_expr . LOG_AND l_factor
-   45       | l_expr . LOG_OR l_factor
-   46       | l_expr . LOG_GT l_factor
-   47       | l_expr . LOG_LT l_factor
+   50 l_expr: l_factor .
 
-    LOG_EQL  desplazar e ir al estado 72
-    LOG_LT   desplazar e ir al estado 73
-    LOG_GT   desplazar e ir al estado 74
-    LOG_AND  desplazar e ir al estado 75
-    LOG_OR   desplazar e ir al estado 76
-    ')'      desplazar e ir al estado 79
+    $default  reduce usando la regla 50 (l_expr)
 
 
 Estado 55
 
-   41 attrib: error .
+   32 dowhile_stmt: DO '{' commands . '}' WHILE '(' l_expr ')' ';'
 
-    $default  reduce usando la regla 41 (attrib)
+    '}'  desplazar e ir al estado 80
 
 
 Estado 56
 
-   25 for_stmt: FOR '(' ffirst . ';' l_expr ';' fthird ')' '{' commands '}'
+   31 while_stmt: WHILE '(' l_expr . ')' '{' commands '}'
+   44 l_expr: l_expr . LOG_EQL l_factor
+   45       | l_expr . LOG_AND l_factor
+   46       | l_expr . LOG_OR l_factor
+   47       | l_expr . LOG_GT l_factor
+   48       | l_expr . LOG_LT l_factor
 
-    ';'  desplazar e ir al estado 80
+    LOG_EQL  desplazar e ir al estado 74
+    LOG_LT   desplazar e ir al estado 75
+    LOG_GT   desplazar e ir al estado 76
+    LOG_AND  desplazar e ir al estado 77
+    LOG_OR   desplazar e ir al estado 78
+    ')'      desplazar e ir al estado 81
 
 
 Estado 57
+
+   42 attrib: error .
+
+    $default  reduce usando la regla 42 (attrib)
+
+
+Estado 58
+
+   25 for_stmt: FOR '(' ffirst . ';' l_expr ';' fthird ')' '{' commands '}'
+
+    ';'  desplazar e ir al estado 82
+
+
+Estado 59
 
    27 ffirst: attrib_list .
 
     $default  reduce usando la regla 27 (ffirst)
 
 
-Estado 58
-
-   35 attrib_list: attrib . ',' attrib_list
-   36            | attrib .
-
-    ','  desplazar e ir al estado 81
-
-    $default  reduce usando la regla 36 (attrib_list)
-
-
-Estado 59
-
-   61 g_factor: INTEGER .
-
-    $default  reduce usando la regla 61 (g_factor)
-
-
 Estado 60
 
-   62 g_factor: REAL .
+   36 attrib_list: attrib . ',' attrib_list
+   37            | attrib .
 
-    $default  reduce usando la regla 62 (g_factor)
+    ','  desplazar e ir al estado 83
+
+    $default  reduce usando la regla 37 (attrib_list)
 
 
 Estado 61
 
-   40 attrib: ID '=' ID .
+   62 g_factor: INTEGER .
 
-    $default  reduce usando la regla 40 (attrib)
+    $default  reduce usando la regla 62 (g_factor)
 
 
 Estado 62
 
-   60 g_factor: '(' . g_expr ')'
+   63 g_factor: REAL .
 
-    INTEGER  desplazar e ir al estado 59
-    REAL     desplazar e ir al estado 60
-    '('      desplazar e ir al estado 62
-
-    g_expr    ir al estado 82
-    g_term    ir al estado 64
-    g_factor  ir al estado 65
+    $default  reduce usando la regla 63 (g_factor)
 
 
 Estado 63
 
-   42 i_attrib: ID '=' g_expr .
-   54 g_expr: g_expr . '+' g_term
-   55       | g_expr . '-' g_term
+   41 attrib: ID '=' ID .
 
-    '+'  desplazar e ir al estado 83
-    '-'  desplazar e ir al estado 84
-
-    $default  reduce usando la regla 42 (i_attrib)
+    $default  reduce usando la regla 41 (attrib)
 
 
 Estado 64
 
-   56 g_expr: g_term .
-   57 g_term: g_term . '*' g_factor
-   58       | g_term . '/' g_factor
+   61 g_factor: '(' . g_expr ')'
 
-    '*'  desplazar e ir al estado 85
-    '/'  desplazar e ir al estado 86
+    INTEGER  desplazar e ir al estado 61
+    REAL     desplazar e ir al estado 62
+    '('      desplazar e ir al estado 64
 
-    $default  reduce usando la regla 56 (g_expr)
+    g_expr    ir al estado 84
+    g_term    ir al estado 66
+    g_factor  ir al estado 67
 
 
 Estado 65
 
-   59 g_term: g_factor .
+   43 i_attrib: ID '=' g_expr .
+   55 g_expr: g_expr . '+' g_term
+   56       | g_expr . '-' g_term
 
-    $default  reduce usando la regla 59 (g_term)
+    '+'  desplazar e ir al estado 85
+    '-'  desplazar e ir al estado 86
+
+    $default  reduce usando la regla 43 (i_attrib)
 
 
 Estado 66
+
+   57 g_expr: g_term .
+   58 g_term: g_term . '*' g_factor
+   59       | g_term . '/' g_factor
+
+    '*'  desplazar e ir al estado 87
+    '/'  desplazar e ir al estado 88
+
+    $default  reduce usando la regla 57 (g_expr)
+
+
+Estado 67
+
+   60 g_term: g_factor .
+
+    $default  reduce usando la regla 60 (g_term)
+
+
+Estado 68
 
     7 command_list: '{' command_list '}' .
 
     $default  reduce usando la regla 7 (command_list)
 
 
-Estado 67
+Estado 69
 
     5 program_end: error .
 
     $default  reduce usando la regla 5 (program_end)
 
 
-Estado 68
+Estado 70
 
     4 program_end: ID . '(' ')' '{' commands '}' program_end
 
-    '('  desplazar e ir al estado 87
+    '('  desplazar e ir al estado 89
 
 
-Estado 69
+Estado 71
 
     1 program: MAIN '(' ')' '{' commands '}' program_end .
 
     $default  reduce usando la regla 1 (program)
 
 
-Estado 70
-
-   43 l_expr: l_expr . LOG_EQL l_factor
-   44       | l_expr . LOG_AND l_factor
-   45       | l_expr . LOG_OR l_factor
-   46       | l_expr . LOG_GT l_factor
-   47       | l_expr . LOG_LT l_factor
-   48       | LOG_NOT l_expr .
-
-    $default  reduce usando la regla 48 (l_expr)
-
-
-Estado 71
-
-   43 l_expr: l_expr . LOG_EQL l_factor
-   44       | l_expr . LOG_AND l_factor
-   45       | l_expr . LOG_OR l_factor
-   46       | l_expr . LOG_GT l_factor
-   47       | l_expr . LOG_LT l_factor
-   50 l_factor: '(' l_expr . ')'
-
-    LOG_EQL  desplazar e ir al estado 72
-    LOG_LT   desplazar e ir al estado 73
-    LOG_GT   desplazar e ir al estado 74
-    LOG_AND  desplazar e ir al estado 75
-    LOG_OR   desplazar e ir al estado 76
-    ')'      desplazar e ir al estado 88
-
-
 Estado 72
 
-   43 l_expr: l_expr LOG_EQL . l_factor
+   44 l_expr: l_expr . LOG_EQL l_factor
+   45       | l_expr . LOG_AND l_factor
+   46       | l_expr . LOG_OR l_factor
+   47       | l_expr . LOG_GT l_factor
+   48       | l_expr . LOG_LT l_factor
+   49       | LOG_NOT l_expr .
 
-    INTEGER  desplazar e ir al estado 46
-    REAL     desplazar e ir al estado 47
-    ID       desplazar e ir al estado 48
-    '('      desplazar e ir al estado 50
-
-    l_factor  ir al estado 89
+    $default  reduce usando la regla 49 (l_expr)
 
 
 Estado 73
 
-   47 l_expr: l_expr LOG_LT . l_factor
+   44 l_expr: l_expr . LOG_EQL l_factor
+   45       | l_expr . LOG_AND l_factor
+   46       | l_expr . LOG_OR l_factor
+   47       | l_expr . LOG_GT l_factor
+   48       | l_expr . LOG_LT l_factor
+   51 l_factor: '(' l_expr . ')'
 
-    INTEGER  desplazar e ir al estado 46
-    REAL     desplazar e ir al estado 47
-    ID       desplazar e ir al estado 48
-    '('      desplazar e ir al estado 50
-
-    l_factor  ir al estado 90
+    LOG_EQL  desplazar e ir al estado 74
+    LOG_LT   desplazar e ir al estado 75
+    LOG_GT   desplazar e ir al estado 76
+    LOG_AND  desplazar e ir al estado 77
+    LOG_OR   desplazar e ir al estado 78
+    ')'      desplazar e ir al estado 90
 
 
 Estado 74
 
-   46 l_expr: l_expr LOG_GT . l_factor
+   44 l_expr: l_expr LOG_EQL . l_factor
 
-    INTEGER  desplazar e ir al estado 46
-    REAL     desplazar e ir al estado 47
-    ID       desplazar e ir al estado 48
-    '('      desplazar e ir al estado 50
+    INTEGER  desplazar e ir al estado 48
+    REAL     desplazar e ir al estado 49
+    ID       desplazar e ir al estado 50
+    '('      desplazar e ir al estado 52
 
     l_factor  ir al estado 91
 
 
 Estado 75
 
-   44 l_expr: l_expr LOG_AND . l_factor
+   48 l_expr: l_expr LOG_LT . l_factor
 
-    INTEGER  desplazar e ir al estado 46
-    REAL     desplazar e ir al estado 47
-    ID       desplazar e ir al estado 48
-    '('      desplazar e ir al estado 50
+    INTEGER  desplazar e ir al estado 48
+    REAL     desplazar e ir al estado 49
+    ID       desplazar e ir al estado 50
+    '('      desplazar e ir al estado 52
 
     l_factor  ir al estado 92
 
 
 Estado 76
 
-   45 l_expr: l_expr LOG_OR . l_factor
+   47 l_expr: l_expr LOG_GT . l_factor
 
-    INTEGER  desplazar e ir al estado 46
-    REAL     desplazar e ir al estado 47
-    ID       desplazar e ir al estado 48
-    '('      desplazar e ir al estado 50
+    INTEGER  desplazar e ir al estado 48
+    REAL     desplazar e ir al estado 49
+    ID       desplazar e ir al estado 50
+    '('      desplazar e ir al estado 52
 
     l_factor  ir al estado 93
 
 
 Estado 77
 
-   22 if_stmt: IF '(' l_expr ')' . '{' commands '}' else_stmt
+   45 l_expr: l_expr LOG_AND . l_factor
 
-    '{'  desplazar e ir al estado 94
+    INTEGER  desplazar e ir al estado 48
+    REAL     desplazar e ir al estado 49
+    ID       desplazar e ir al estado 50
+    '('      desplazar e ir al estado 52
+
+    l_factor  ir al estado 94
 
 
 Estado 78
 
-   32 dowhile_stmt: DO '{' commands '}' . WHILE '(' l_expr ')' ';'
+   46 l_expr: l_expr LOG_OR . l_factor
 
-    WHILE  desplazar e ir al estado 95
+    INTEGER  desplazar e ir al estado 48
+    REAL     desplazar e ir al estado 49
+    ID       desplazar e ir al estado 50
+    '('      desplazar e ir al estado 52
+
+    l_factor  ir al estado 95
 
 
 Estado 79
 
-   31 while_stmt: WHILE '(' l_expr ')' . '{' commands '}'
+   22 if_stmt: IF '(' l_expr ')' . '{' commands '}' else_stmt
 
     '{'  desplazar e ir al estado 96
 
 
 Estado 80
 
-   25 for_stmt: FOR '(' ffirst ';' . l_expr ';' fthird ')' '{' commands '}'
+   32 dowhile_stmt: DO '{' commands '}' . WHILE '(' l_expr ')' ';'
 
-    INTEGER  desplazar e ir al estado 46
-    REAL     desplazar e ir al estado 47
-    ID       desplazar e ir al estado 48
-    LOG_NOT  desplazar e ir al estado 49
-    '('      desplazar e ir al estado 50
-
-    l_expr    ir al estado 97
-    l_factor  ir al estado 52
+    WHILE  desplazar e ir al estado 97
 
 
 Estado 81
 
-   35 attrib_list: attrib ',' . attrib_list
+   31 while_stmt: WHILE '(' l_expr ')' . '{' commands '}'
 
-    error  desplazar e ir al estado 55
-    ID     desplazar e ir al estado 18
-
-    attrib_list  ir al estado 98
-    attrib       ir al estado 58
-    i_attrib     ir al estado 31
+    '{'  desplazar e ir al estado 98
 
 
 Estado 82
 
-   54 g_expr: g_expr . '+' g_term
-   55       | g_expr . '-' g_term
-   60 g_factor: '(' g_expr . ')'
+   25 for_stmt: FOR '(' ffirst ';' . l_expr ';' fthird ')' '{' commands '}'
 
-    '+'  desplazar e ir al estado 83
-    '-'  desplazar e ir al estado 84
-    ')'  desplazar e ir al estado 99
+    INTEGER  desplazar e ir al estado 48
+    REAL     desplazar e ir al estado 49
+    ID       desplazar e ir al estado 50
+    LOG_NOT  desplazar e ir al estado 51
+    '('      desplazar e ir al estado 52
+
+    l_expr    ir al estado 99
+    l_factor  ir al estado 54
 
 
 Estado 83
 
-   54 g_expr: g_expr '+' . g_term
+   36 attrib_list: attrib ',' . attrib_list
 
-    INTEGER  desplazar e ir al estado 59
-    REAL     desplazar e ir al estado 60
-    '('      desplazar e ir al estado 62
+    error  desplazar e ir al estado 57
+    ID     desplazar e ir al estado 19
 
-    g_term    ir al estado 100
-    g_factor  ir al estado 65
+    attrib_list  ir al estado 100
+    attrib       ir al estado 60
+    i_attrib     ir al estado 32
 
 
 Estado 84
 
-   55 g_expr: g_expr '-' . g_term
+   55 g_expr: g_expr . '+' g_term
+   56       | g_expr . '-' g_term
+   61 g_factor: '(' g_expr . ')'
 
-    INTEGER  desplazar e ir al estado 59
-    REAL     desplazar e ir al estado 60
-    '('      desplazar e ir al estado 62
-
-    g_term    ir al estado 101
-    g_factor  ir al estado 65
+    '+'  desplazar e ir al estado 85
+    '-'  desplazar e ir al estado 86
+    ')'  desplazar e ir al estado 101
 
 
 Estado 85
 
-   57 g_term: g_term '*' . g_factor
+   55 g_expr: g_expr '+' . g_term
 
-    INTEGER  desplazar e ir al estado 59
-    REAL     desplazar e ir al estado 60
-    '('      desplazar e ir al estado 62
+    INTEGER  desplazar e ir al estado 61
+    REAL     desplazar e ir al estado 62
+    '('      desplazar e ir al estado 64
 
-    g_factor  ir al estado 102
+    g_term    ir al estado 102
+    g_factor  ir al estado 67
 
 
 Estado 86
 
-   58 g_term: g_term '/' . g_factor
+   56 g_expr: g_expr '-' . g_term
 
-    INTEGER  desplazar e ir al estado 59
-    REAL     desplazar e ir al estado 60
-    '('      desplazar e ir al estado 62
+    INTEGER  desplazar e ir al estado 61
+    REAL     desplazar e ir al estado 62
+    '('      desplazar e ir al estado 64
 
-    g_factor  ir al estado 103
+    g_term    ir al estado 103
+    g_factor  ir al estado 67
 
 
 Estado 87
 
-    4 program_end: ID '(' . ')' '{' commands '}' program_end
+   58 g_term: g_term '*' . g_factor
 
-    ')'  desplazar e ir al estado 104
+    INTEGER  desplazar e ir al estado 61
+    REAL     desplazar e ir al estado 62
+    '('      desplazar e ir al estado 64
+
+    g_factor  ir al estado 104
 
 
 Estado 88
 
-   50 l_factor: '(' l_expr ')' .
+   59 g_term: g_term '/' . g_factor
 
-    $default  reduce usando la regla 50 (l_factor)
+    INTEGER  desplazar e ir al estado 61
+    REAL     desplazar e ir al estado 62
+    '('      desplazar e ir al estado 64
+
+    g_factor  ir al estado 105
 
 
 Estado 89
 
-   43 l_expr: l_expr LOG_EQL l_factor .
+    4 program_end: ID '(' . ')' '{' commands '}' program_end
 
-    $default  reduce usando la regla 43 (l_expr)
+    ')'  desplazar e ir al estado 106
 
 
 Estado 90
 
-   47 l_expr: l_expr LOG_LT l_factor .
+   51 l_factor: '(' l_expr ')' .
 
-    $default  reduce usando la regla 47 (l_expr)
+    $default  reduce usando la regla 51 (l_factor)
 
 
 Estado 91
 
-   46 l_expr: l_expr LOG_GT l_factor .
-
-    $default  reduce usando la regla 46 (l_expr)
-
-
-Estado 92
-
-   44 l_expr: l_expr LOG_AND l_factor .
+   44 l_expr: l_expr LOG_EQL l_factor .
 
     $default  reduce usando la regla 44 (l_expr)
 
 
+Estado 92
+
+   48 l_expr: l_expr LOG_LT l_factor .
+
+    $default  reduce usando la regla 48 (l_expr)
+
+
 Estado 93
 
-   45 l_expr: l_expr LOG_OR l_factor .
+   47 l_expr: l_expr LOG_GT l_factor .
+
+    $default  reduce usando la regla 47 (l_expr)
+
+
+Estado 94
+
+   45 l_expr: l_expr LOG_AND l_factor .
 
     $default  reduce usando la regla 45 (l_expr)
 
 
-Estado 94
+Estado 95
+
+   46 l_expr: l_expr LOG_OR l_factor .
+
+    $default  reduce usando la regla 46 (l_expr)
+
+
+Estado 96
 
    22 if_stmt: IF '(' l_expr ')' '{' . commands '}' else_stmt
 
@@ -1127,33 +1153,34 @@ Estado 94
     RETURN      desplazar e ir al estado 15
     INT_TYPE    desplazar e ir al estado 16
     FLOAT_TYPE  desplazar e ir al estado 17
-    ID          desplazar e ir al estado 18
-    '{'         desplazar e ir al estado 19
+    BOOL_TYPE   desplazar e ir al estado 18
+    ID          desplazar e ir al estado 19
+    '{'         desplazar e ir al estado 20
 
     '}'  reduce usando la regla 9 (command_list)
 
-    commands      ir al estado 105
-    command_list  ir al estado 21
-    command       ir al estado 22
-    stmt          ir al estado 23
-    cmd           ir al estado 24
-    if_stmt       ir al estado 25
-    for_stmt      ir al estado 26
-    while_stmt    ir al estado 27
-    dowhile_stmt  ir al estado 28
-    declaration   ir al estado 29
-    attrib        ir al estado 30
-    i_attrib      ir al estado 31
+    commands      ir al estado 107
+    command_list  ir al estado 22
+    command       ir al estado 23
+    stmt          ir al estado 24
+    cmd           ir al estado 25
+    if_stmt       ir al estado 26
+    for_stmt      ir al estado 27
+    while_stmt    ir al estado 28
+    dowhile_stmt  ir al estado 29
+    declaration   ir al estado 30
+    attrib        ir al estado 31
+    i_attrib      ir al estado 32
 
 
-Estado 95
+Estado 97
 
    32 dowhile_stmt: DO '{' commands '}' WHILE . '(' l_expr ')' ';'
 
-    '('  desplazar e ir al estado 106
+    '('  desplazar e ir al estado 108
 
 
-Estado 96
+Estado 98
 
    31 while_stmt: WHILE '(' l_expr ')' '{' . commands '}'
 
@@ -1167,151 +1194,153 @@ Estado 96
     RETURN      desplazar e ir al estado 15
     INT_TYPE    desplazar e ir al estado 16
     FLOAT_TYPE  desplazar e ir al estado 17
-    ID          desplazar e ir al estado 18
-    '{'         desplazar e ir al estado 19
+    BOOL_TYPE   desplazar e ir al estado 18
+    ID          desplazar e ir al estado 19
+    '{'         desplazar e ir al estado 20
 
     '}'  reduce usando la regla 9 (command_list)
 
-    commands      ir al estado 107
-    command_list  ir al estado 21
-    command       ir al estado 22
-    stmt          ir al estado 23
-    cmd           ir al estado 24
-    if_stmt       ir al estado 25
-    for_stmt      ir al estado 26
-    while_stmt    ir al estado 27
-    dowhile_stmt  ir al estado 28
-    declaration   ir al estado 29
-    attrib        ir al estado 30
-    i_attrib      ir al estado 31
-
-
-Estado 97
-
-   25 for_stmt: FOR '(' ffirst ';' l_expr . ';' fthird ')' '{' commands '}'
-   43 l_expr: l_expr . LOG_EQL l_factor
-   44       | l_expr . LOG_AND l_factor
-   45       | l_expr . LOG_OR l_factor
-   46       | l_expr . LOG_GT l_factor
-   47       | l_expr . LOG_LT l_factor
-
-    LOG_EQL  desplazar e ir al estado 72
-    LOG_LT   desplazar e ir al estado 73
-    LOG_GT   desplazar e ir al estado 74
-    LOG_AND  desplazar e ir al estado 75
-    LOG_OR   desplazar e ir al estado 76
-    ';'      desplazar e ir al estado 108
-
-
-Estado 98
-
-   35 attrib_list: attrib ',' attrib_list .
-
-    $default  reduce usando la regla 35 (attrib_list)
+    commands      ir al estado 109
+    command_list  ir al estado 22
+    command       ir al estado 23
+    stmt          ir al estado 24
+    cmd           ir al estado 25
+    if_stmt       ir al estado 26
+    for_stmt      ir al estado 27
+    while_stmt    ir al estado 28
+    dowhile_stmt  ir al estado 29
+    declaration   ir al estado 30
+    attrib        ir al estado 31
+    i_attrib      ir al estado 32
 
 
 Estado 99
 
-   60 g_factor: '(' g_expr ')' .
+   25 for_stmt: FOR '(' ffirst ';' l_expr . ';' fthird ')' '{' commands '}'
+   44 l_expr: l_expr . LOG_EQL l_factor
+   45       | l_expr . LOG_AND l_factor
+   46       | l_expr . LOG_OR l_factor
+   47       | l_expr . LOG_GT l_factor
+   48       | l_expr . LOG_LT l_factor
 
-    $default  reduce usando la regla 60 (g_factor)
+    LOG_EQL  desplazar e ir al estado 74
+    LOG_LT   desplazar e ir al estado 75
+    LOG_GT   desplazar e ir al estado 76
+    LOG_AND  desplazar e ir al estado 77
+    LOG_OR   desplazar e ir al estado 78
+    ';'      desplazar e ir al estado 110
 
 
 Estado 100
 
-   54 g_expr: g_expr '+' g_term .
-   57 g_term: g_term . '*' g_factor
-   58       | g_term . '/' g_factor
+   36 attrib_list: attrib ',' attrib_list .
 
-    '*'  desplazar e ir al estado 85
-    '/'  desplazar e ir al estado 86
-
-    $default  reduce usando la regla 54 (g_expr)
+    $default  reduce usando la regla 36 (attrib_list)
 
 
 Estado 101
 
-   55 g_expr: g_expr '-' g_term .
-   57 g_term: g_term . '*' g_factor
-   58       | g_term . '/' g_factor
+   61 g_factor: '(' g_expr ')' .
 
-    '*'  desplazar e ir al estado 85
-    '/'  desplazar e ir al estado 86
-
-    $default  reduce usando la regla 55 (g_expr)
+    $default  reduce usando la regla 61 (g_factor)
 
 
 Estado 102
 
-   57 g_term: g_term '*' g_factor .
+   55 g_expr: g_expr '+' g_term .
+   58 g_term: g_term . '*' g_factor
+   59       | g_term . '/' g_factor
 
-    $default  reduce usando la regla 57 (g_term)
+    '*'  desplazar e ir al estado 87
+    '/'  desplazar e ir al estado 88
+
+    $default  reduce usando la regla 55 (g_expr)
 
 
 Estado 103
 
-   58 g_term: g_term '/' g_factor .
+   56 g_expr: g_expr '-' g_term .
+   58 g_term: g_term . '*' g_factor
+   59       | g_term . '/' g_factor
 
-    $default  reduce usando la regla 58 (g_term)
+    '*'  desplazar e ir al estado 87
+    '/'  desplazar e ir al estado 88
+
+    $default  reduce usando la regla 56 (g_expr)
 
 
 Estado 104
 
-    4 program_end: ID '(' ')' . '{' commands '}' program_end
+   58 g_term: g_term '*' g_factor .
 
-    '{'  desplazar e ir al estado 109
+    $default  reduce usando la regla 58 (g_term)
 
 
 Estado 105
 
-   22 if_stmt: IF '(' l_expr ')' '{' commands . '}' else_stmt
+   59 g_term: g_term '/' g_factor .
 
-    '}'  desplazar e ir al estado 110
+    $default  reduce usando la regla 59 (g_term)
 
 
 Estado 106
 
-   32 dowhile_stmt: DO '{' commands '}' WHILE '(' . l_expr ')' ';'
+    4 program_end: ID '(' ')' . '{' commands '}' program_end
 
-    INTEGER  desplazar e ir al estado 46
-    REAL     desplazar e ir al estado 47
-    ID       desplazar e ir al estado 48
-    LOG_NOT  desplazar e ir al estado 49
-    '('      desplazar e ir al estado 50
-
-    l_expr    ir al estado 111
-    l_factor  ir al estado 52
+    '{'  desplazar e ir al estado 111
 
 
 Estado 107
 
-   31 while_stmt: WHILE '(' l_expr ')' '{' commands . '}'
+   22 if_stmt: IF '(' l_expr ')' '{' commands . '}' else_stmt
 
     '}'  desplazar e ir al estado 112
 
 
 Estado 108
 
+   32 dowhile_stmt: DO '{' commands '}' WHILE '(' . l_expr ')' ';'
+
+    INTEGER  desplazar e ir al estado 48
+    REAL     desplazar e ir al estado 49
+    ID       desplazar e ir al estado 50
+    LOG_NOT  desplazar e ir al estado 51
+    '('      desplazar e ir al estado 52
+
+    l_expr    ir al estado 113
+    l_factor  ir al estado 54
+
+
+Estado 109
+
+   31 while_stmt: WHILE '(' l_expr ')' '{' commands . '}'
+
+    '}'  desplazar e ir al estado 114
+
+
+Estado 110
+
    25 for_stmt: FOR '(' ffirst ';' l_expr ';' . fthird ')' '{' commands '}'
 
-    error       desplazar e ir al estado 55
+    error       desplazar e ir al estado 57
     BREAK       desplazar e ir al estado 13
     PRINT       desplazar e ir al estado 14
     RETURN      desplazar e ir al estado 15
     INT_TYPE    desplazar e ir al estado 16
     FLOAT_TYPE  desplazar e ir al estado 17
-    ID          desplazar e ir al estado 18
+    BOOL_TYPE   desplazar e ir al estado 18
+    ID          desplazar e ir al estado 19
 
     ')'  reduce usando la regla 28 (fthird)
 
-    cmd          ir al estado 113
-    fthird       ir al estado 114
-    declaration  ir al estado 29
-    attrib       ir al estado 30
-    i_attrib     ir al estado 31
+    cmd          ir al estado 115
+    fthird       ir al estado 116
+    declaration  ir al estado 30
+    attrib       ir al estado 31
+    i_attrib     ir al estado 32
 
 
-Estado 109
+Estado 111
 
     4 program_end: ID '(' ')' '{' . commands '}' program_end
 
@@ -1325,146 +1354,148 @@ Estado 109
     RETURN      desplazar e ir al estado 15
     INT_TYPE    desplazar e ir al estado 16
     FLOAT_TYPE  desplazar e ir al estado 17
-    ID          desplazar e ir al estado 18
-    '{'         desplazar e ir al estado 19
+    BOOL_TYPE   desplazar e ir al estado 18
+    ID          desplazar e ir al estado 19
+    '{'         desplazar e ir al estado 20
 
     '}'  reduce usando la regla 9 (command_list)
 
-    commands      ir al estado 115
-    command_list  ir al estado 21
-    command       ir al estado 22
-    stmt          ir al estado 23
-    cmd           ir al estado 24
-    if_stmt       ir al estado 25
-    for_stmt      ir al estado 26
-    while_stmt    ir al estado 27
-    dowhile_stmt  ir al estado 28
-    declaration   ir al estado 29
-    attrib        ir al estado 30
-    i_attrib      ir al estado 31
-
-
-Estado 110
-
-   22 if_stmt: IF '(' l_expr ')' '{' commands '}' . else_stmt
-
-    ELSE  desplazar e ir al estado 116
-
-    $default  reduce usando la regla 23 (else_stmt)
-
-    else_stmt  ir al estado 117
-
-
-Estado 111
-
-   32 dowhile_stmt: DO '{' commands '}' WHILE '(' l_expr . ')' ';'
-   43 l_expr: l_expr . LOG_EQL l_factor
-   44       | l_expr . LOG_AND l_factor
-   45       | l_expr . LOG_OR l_factor
-   46       | l_expr . LOG_GT l_factor
-   47       | l_expr . LOG_LT l_factor
-
-    LOG_EQL  desplazar e ir al estado 72
-    LOG_LT   desplazar e ir al estado 73
-    LOG_GT   desplazar e ir al estado 74
-    LOG_AND  desplazar e ir al estado 75
-    LOG_OR   desplazar e ir al estado 76
-    ')'      desplazar e ir al estado 118
+    commands      ir al estado 117
+    command_list  ir al estado 22
+    command       ir al estado 23
+    stmt          ir al estado 24
+    cmd           ir al estado 25
+    if_stmt       ir al estado 26
+    for_stmt      ir al estado 27
+    while_stmt    ir al estado 28
+    dowhile_stmt  ir al estado 29
+    declaration   ir al estado 30
+    attrib        ir al estado 31
+    i_attrib      ir al estado 32
 
 
 Estado 112
+
+   22 if_stmt: IF '(' l_expr ')' '{' commands '}' . else_stmt
+
+    ELSE  desplazar e ir al estado 118
+
+    $default  reduce usando la regla 23 (else_stmt)
+
+    else_stmt  ir al estado 119
+
+
+Estado 113
+
+   32 dowhile_stmt: DO '{' commands '}' WHILE '(' l_expr . ')' ';'
+   44 l_expr: l_expr . LOG_EQL l_factor
+   45       | l_expr . LOG_AND l_factor
+   46       | l_expr . LOG_OR l_factor
+   47       | l_expr . LOG_GT l_factor
+   48       | l_expr . LOG_LT l_factor
+
+    LOG_EQL  desplazar e ir al estado 74
+    LOG_LT   desplazar e ir al estado 75
+    LOG_GT   desplazar e ir al estado 76
+    LOG_AND  desplazar e ir al estado 77
+    LOG_OR   desplazar e ir al estado 78
+    ')'      desplazar e ir al estado 120
+
+
+Estado 114
 
    31 while_stmt: WHILE '(' l_expr ')' '{' commands '}' .
 
     $default  reduce usando la regla 31 (while_stmt)
 
 
-Estado 113
+Estado 115
 
    29 fthird: cmd . ',' fthird
    30       | cmd .
 
-    ','  desplazar e ir al estado 119
+    ','  desplazar e ir al estado 121
 
     $default  reduce usando la regla 30 (fthird)
 
 
-Estado 114
+Estado 116
 
    25 for_stmt: FOR '(' ffirst ';' l_expr ';' fthird . ')' '{' commands '}'
 
-    ')'  desplazar e ir al estado 120
-
-
-Estado 115
-
-    4 program_end: ID '(' ')' '{' commands . '}' program_end
-
-    '}'  desplazar e ir al estado 121
-
-
-Estado 116
-
-   24 else_stmt: ELSE . '{' commands '}'
-
-    '{'  desplazar e ir al estado 122
+    ')'  desplazar e ir al estado 122
 
 
 Estado 117
+
+    4 program_end: ID '(' ')' '{' commands . '}' program_end
+
+    '}'  desplazar e ir al estado 123
+
+
+Estado 118
+
+   24 else_stmt: ELSE . '{' commands '}'
+
+    '{'  desplazar e ir al estado 124
+
+
+Estado 119
 
    22 if_stmt: IF '(' l_expr ')' '{' commands '}' else_stmt .
 
     $default  reduce usando la regla 22 (if_stmt)
 
 
-Estado 118
+Estado 120
 
    32 dowhile_stmt: DO '{' commands '}' WHILE '(' l_expr ')' . ';'
 
-    ';'  desplazar e ir al estado 123
+    ';'  desplazar e ir al estado 125
 
 
-Estado 119
+Estado 121
 
    29 fthird: cmd ',' . fthird
 
-    error       desplazar e ir al estado 55
+    error       desplazar e ir al estado 57
     BREAK       desplazar e ir al estado 13
     PRINT       desplazar e ir al estado 14
     RETURN      desplazar e ir al estado 15
     INT_TYPE    desplazar e ir al estado 16
     FLOAT_TYPE  desplazar e ir al estado 17
-    ID          desplazar e ir al estado 18
+    BOOL_TYPE   desplazar e ir al estado 18
+    ID          desplazar e ir al estado 19
 
     ')'  reduce usando la regla 28 (fthird)
 
-    cmd          ir al estado 113
-    fthird       ir al estado 124
-    declaration  ir al estado 29
-    attrib       ir al estado 30
-    i_attrib     ir al estado 31
-
-
-Estado 120
-
-   25 for_stmt: FOR '(' ffirst ';' l_expr ';' fthird ')' . '{' commands '}'
-
-    '{'  desplazar e ir al estado 125
-
-
-Estado 121
-
-    4 program_end: ID '(' ')' '{' commands '}' . program_end
-
-    error  desplazar e ir al estado 67
-    ID     desplazar e ir al estado 68
-
-    $end  reduce usando la regla 3 (program_end)
-
-    program_end  ir al estado 126
+    cmd          ir al estado 115
+    fthird       ir al estado 126
+    declaration  ir al estado 30
+    attrib       ir al estado 31
+    i_attrib     ir al estado 32
 
 
 Estado 122
+
+   25 for_stmt: FOR '(' ffirst ';' l_expr ';' fthird ')' . '{' commands '}'
+
+    '{'  desplazar e ir al estado 127
+
+
+Estado 123
+
+    4 program_end: ID '(' ')' '{' commands '}' . program_end
+
+    error  desplazar e ir al estado 69
+    ID     desplazar e ir al estado 70
+
+    $end  reduce usando la regla 3 (program_end)
+
+    program_end  ir al estado 128
+
+
+Estado 124
 
    24 else_stmt: ELSE '{' . commands '}'
 
@@ -1478,40 +1509,41 @@ Estado 122
     RETURN      desplazar e ir al estado 15
     INT_TYPE    desplazar e ir al estado 16
     FLOAT_TYPE  desplazar e ir al estado 17
-    ID          desplazar e ir al estado 18
-    '{'         desplazar e ir al estado 19
+    BOOL_TYPE   desplazar e ir al estado 18
+    ID          desplazar e ir al estado 19
+    '{'         desplazar e ir al estado 20
 
     '}'  reduce usando la regla 9 (command_list)
 
-    commands      ir al estado 127
-    command_list  ir al estado 21
-    command       ir al estado 22
-    stmt          ir al estado 23
-    cmd           ir al estado 24
-    if_stmt       ir al estado 25
-    for_stmt      ir al estado 26
-    while_stmt    ir al estado 27
-    dowhile_stmt  ir al estado 28
-    declaration   ir al estado 29
-    attrib        ir al estado 30
-    i_attrib      ir al estado 31
+    commands      ir al estado 129
+    command_list  ir al estado 22
+    command       ir al estado 23
+    stmt          ir al estado 24
+    cmd           ir al estado 25
+    if_stmt       ir al estado 26
+    for_stmt      ir al estado 27
+    while_stmt    ir al estado 28
+    dowhile_stmt  ir al estado 29
+    declaration   ir al estado 30
+    attrib        ir al estado 31
+    i_attrib      ir al estado 32
 
 
-Estado 123
+Estado 125
 
    32 dowhile_stmt: DO '{' commands '}' WHILE '(' l_expr ')' ';' .
 
     $default  reduce usando la regla 32 (dowhile_stmt)
 
 
-Estado 124
+Estado 126
 
    29 fthird: cmd ',' fthird .
 
     $default  reduce usando la regla 29 (fthird)
 
 
-Estado 125
+Estado 127
 
    25 for_stmt: FOR '(' ffirst ';' l_expr ';' fthird ')' '{' . commands '}'
 
@@ -1525,54 +1557,55 @@ Estado 125
     RETURN      desplazar e ir al estado 15
     INT_TYPE    desplazar e ir al estado 16
     FLOAT_TYPE  desplazar e ir al estado 17
-    ID          desplazar e ir al estado 18
-    '{'         desplazar e ir al estado 19
+    BOOL_TYPE   desplazar e ir al estado 18
+    ID          desplazar e ir al estado 19
+    '{'         desplazar e ir al estado 20
 
     '}'  reduce usando la regla 9 (command_list)
 
-    commands      ir al estado 128
-    command_list  ir al estado 21
-    command       ir al estado 22
-    stmt          ir al estado 23
-    cmd           ir al estado 24
-    if_stmt       ir al estado 25
-    for_stmt      ir al estado 26
-    while_stmt    ir al estado 27
-    dowhile_stmt  ir al estado 28
-    declaration   ir al estado 29
-    attrib        ir al estado 30
-    i_attrib      ir al estado 31
+    commands      ir al estado 130
+    command_list  ir al estado 22
+    command       ir al estado 23
+    stmt          ir al estado 24
+    cmd           ir al estado 25
+    if_stmt       ir al estado 26
+    for_stmt      ir al estado 27
+    while_stmt    ir al estado 28
+    dowhile_stmt  ir al estado 29
+    declaration   ir al estado 30
+    attrib        ir al estado 31
+    i_attrib      ir al estado 32
 
 
-Estado 126
+Estado 128
 
     4 program_end: ID '(' ')' '{' commands '}' program_end .
 
     $default  reduce usando la regla 4 (program_end)
 
 
-Estado 127
+Estado 129
 
    24 else_stmt: ELSE '{' commands . '}'
 
-    '}'  desplazar e ir al estado 129
+    '}'  desplazar e ir al estado 131
 
 
-Estado 128
+Estado 130
 
    25 for_stmt: FOR '(' ffirst ';' l_expr ';' fthird ')' '{' commands . '}'
 
-    '}'  desplazar e ir al estado 130
+    '}'  desplazar e ir al estado 132
 
 
-Estado 129
+Estado 131
 
    24 else_stmt: ELSE '{' commands '}' .
 
     $default  reduce usando la regla 24 (else_stmt)
 
 
-Estado 130
+Estado 132
 
    25 for_stmt: FOR '(' ffirst ';' l_expr ';' fthird ')' '{' commands '}' .
 

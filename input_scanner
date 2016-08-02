@@ -1,8 +1,5 @@
 main() {
-	int prueba_id;
-	prueba_id=10.982913;
-	int a;
-	a=5*2;
-	int d;
-	d=prueba_id;
+	boolean d;
+      	d=0.231;
+	
 }

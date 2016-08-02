@@ -1,21 +1,19 @@
 TABLA DE SÍMBOLOS
-14 entries
+12 entries
 
 +-------+---------+------------------------------+
 |   -   |  TIPO   |        TOKEN = VALOR         |
 +-------+---------+------------------------------+
-| 1     | ENTERO  |  d = 10
-| 2     | ENTERO  |  a = 10
-| 3     | ENTERO  |  prueba_id = 10
-| 4     | PALABRA |  float
-| 5     | PALABRA |  int
-| 6     | PALABRA |  return
-| 7     | PALABRA |  print
-| 8     | PALABRA |  break
-| 9     | PALABRA |  for
-| 10    | PALABRA |  while
-| 11    | PALABRA |  do
-| 12    | PALABRA |  else
-| 13    | PALABRA |  if
-| 14    | PALABRA |  main
+| 1     |BOOLEANO |  d = 0.000000
+| 2     | PALABRA |  float
+| 3     | PALABRA |  int
+| 4     | PALABRA |  return
+| 5     | PALABRA |  print
+| 6     | PALABRA |  break
+| 7     | PALABRA |  for
+| 8     | PALABRA |  while
+| 9     | PALABRA |  do
+| 10    | PALABRA |  else
+| 11    | PALABRA |  if
+| 12    | PALABRA |  main
 +-------+---------+------------------------------+

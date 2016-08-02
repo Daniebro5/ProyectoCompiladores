@@ -56,18 +56,20 @@ extern int yydebug;
     RETURN = 266,
     INT_TYPE = 267,
     FLOAT_TYPE = 268,
-    STRING = 269,
-    INTEGER = 270,
-    REAL = 271,
-    ID = 272,
-    MATH_INC = 273,
-    MATH_DEC = 274,
-    LOG_EQL = 275,
-    LOG_LT = 276,
-    LOG_GT = 277,
-    LOG_AND = 278,
-    LOG_OR = 279,
-    LOG_NOT = 280
+    BOOL_TYPE = 269,
+    STRING = 270,
+    INTEGER = 271,
+    REAL = 272,
+    BOOLEAN = 273,
+    ID = 274,
+    MATH_INC = 275,
+    MATH_DEC = 276,
+    LOG_EQL = 277,
+    LOG_LT = 278,
+    LOG_GT = 279,
+    LOG_AND = 280,
+    LOG_OR = 281,
+    LOG_NOT = 282
   };
 #endif
 
@@ -81,8 +83,9 @@ union YYSTYPE
 	char *lexeme;
 	int integer;
 	float real;
+	
 
-#line 86 "parser.tab.h" /* glr.c:197  */
+#line 89 "parser.tab.h" /* glr.c:197  */
 };
 
 typedef union YYSTYPE YYSTYPE;
